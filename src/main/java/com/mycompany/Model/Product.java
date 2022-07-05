@@ -13,6 +13,30 @@ public class Product {
         this.inputPrice = inputPrice;
         this.sellPrice = sellPrice;
     }
+// Đã tạo thêm setter
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setNumberInStock(int numberInStock) {
+        this.numberInStock = numberInStock;
+    }
+
+    public void setInputPrice(int inputPrice) {
+        this.inputPrice = inputPrice;
+    }
+
+    public void setSellPrice(int sellPrice) {
+        this.sellPrice = sellPrice;
+    }
 
     private String id;
 
