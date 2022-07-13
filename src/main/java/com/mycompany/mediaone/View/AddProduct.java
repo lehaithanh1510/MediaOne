@@ -1,10 +1,18 @@
 package com.mycompany.mediaone.View;
 
-import com.mycompany.Model.Product;
+import com.mycompany.mediaone.Model.Product;
+import com.mycompany.mediaone.Util.FileUtil;
+import com.mycompany.mediaone.Util.ProductUtil;
+import java.io.IOException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AddProduct extends javax.swing.JPanel {
 
     private HomePage homePage;
+    private ProductUtil productUtil = new ProductUtil();
+    private FileUtil<Product> productFileUtil = new FileUtil<>();
 
     public AddProduct(HomePage homePage) {
         initComponents();
@@ -16,6 +24,7 @@ public class AddProduct extends javax.swing.JPanel {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         InterfaceTitleLabel = new javax.swing.JLabel();
@@ -30,8 +39,7 @@ public class AddProduct extends javax.swing.JPanel {
         productNameTextArea = new javax.swing.JTextArea();
         productTypePanel = new javax.swing.JPanel();
         productTypeLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        productTypeTextArea = new javax.swing.JTextArea();
+        productTypeComboBox = new javax.swing.JComboBox<>();
         productCategoryPanel = new javax.swing.JPanel();
         productCategoryLabel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -58,8 +66,7 @@ public class AddProduct extends javax.swing.JPanel {
         productNumInStockTextArea = new javax.swing.JTextArea();
         dataRelease = new javax.swing.JPanel();
         productIdPanel1 = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        productDatareleaseTextArea = new javax.swing.JTextArea();
+        productDateRelease = new com.toedter.calendar.JDateChooser();
         backBtnPanel = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
         createBtnPanel = new javax.swing.JPanel();
@@ -67,8 +74,10 @@ public class AddProduct extends javax.swing.JPanel {
 
         jTextField1.setText("jTextField1");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setPreferredSize(new java.awt.Dimension(689, 542));
-        setLayout(new java.awt.GridLayout());
+        setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(692, 567));
 
@@ -101,7 +110,6 @@ public class AddProduct extends javax.swing.JPanel {
 
         productIdTextArea.setColumns(20);
         productIdTextArea.setRows(5);
-        productIdTextArea.setText("001");
         jScrollPane1.setViewportView(productIdTextArea);
 
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 36, 330, 50));
@@ -126,11 +134,13 @@ public class AddProduct extends javax.swing.JPanel {
         productTypeLabel.setText("Product Type");
         productTypePanel.add(productTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        productTypeTextArea.setColumns(20);
-        productTypeTextArea.setRows(5);
-        jScrollPane3.setViewportView(productTypeTextArea);
-
-        productTypePanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 50));
+        productTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Film CD", "Music CD", "Book" }));
+        productTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productTypeComboBoxActionPerformed(evt);
+            }
+        });
+        productTypePanel.add(productTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 50));
 
         formPanel.add(productTypePanel);
 
@@ -149,8 +159,8 @@ public class AddProduct extends javax.swing.JPanel {
 
         productAuthorPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        productAuthorLabel.setText("Author/Director");
-        productAuthorPanel.add(productAuthorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 110, 30));
+        productAuthorLabel.setText("Author/Director/Musician");
+        productAuthorPanel.add(productAuthorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 30));
 
         productAuthorTextArea.setColumns(20);
         productAuthorTextArea.setRows(5);
@@ -162,8 +172,8 @@ public class AddProduct extends javax.swing.JPanel {
 
         productListActorSinger.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel18.setText("List actor/signer");
-        productListActorSinger.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+        jLabel18.setText("List contributor/actor/singer");
+        productListActorSinger.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 330, 30));
 
         productActorTextArea.setColumns(20);
         productActorTextArea.setRows(5);
@@ -217,11 +227,8 @@ public class AddProduct extends javax.swing.JPanel {
         productIdPanel1.setText("Date release");
         dataRelease.add(productIdPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        productDatareleaseTextArea.setColumns(20);
-        productDatareleaseTextArea.setRows(5);
-        jScrollPane8.setViewportView(productDatareleaseTextArea);
-
-        dataRelease.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 50));
+        productDateRelease.setDateFormatString("dd-MM-yyyy");
+        dataRelease.add(productDateRelease, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 340, 50));
 
         formPanel.add(dataRelease);
 
@@ -238,7 +245,7 @@ public class AddProduct extends javax.swing.JPanel {
         backBtnPanelLayout.setHorizontalGroup(
             backBtnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backBtnPanelLayout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
+                .addContainerGap(155, Short.MAX_VALUE)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -267,7 +274,7 @@ public class AddProduct extends javax.swing.JPanel {
             .addGroup(createBtnPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         createBtnPanelLayout.setVerticalGroup(
             createBtnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,17 +317,27 @@ public class AddProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
         var productName = productNameTextArea.getText();
         var productId = productIdTextArea.getText();
-        var productType = productTypeTextArea.getText();
+        var productType = productUtil.convertStringToEProductType((productTypeComboBox.getSelectedItem().toString()));
         int productSellPrice = Integer.parseInt(productSellPriceTextArea.getText());
         int productInputPrice = Integer.parseInt(productInputPriceTextArea.getText());
         int productNumInStock = Integer.parseInt(productNumInStockTextArea.getText());
-        this.homePage.productInterface.productListItems.add(new Product(productId, productName, productType, productNumInStock, productInputPrice, productSellPrice));
-        this.homePage.productInterface.addNewProductToListPanel(new Product(productId, productName, productType, productNumInStock, productInputPrice, productSellPrice));
-
-        System.out.println(this.homePage.productInterface.productListItems.size());
+        Date releaseDate = productDateRelease.getDate();
+        var productCategory = productCategoryTextArea.getText();
+        var productContributorActorSinger = productActorTextArea.getText();
+        var productAuthorDirectorMusician = productAuthorTextArea.getText();
+        this.homePage.productInterface.productListItems.add(new Product(productId, productName, productType, productNumInStock, productInputPrice, productSellPrice, releaseDate, productCategory, productAuthorDirectorMusician, productContributorActorSinger));
+        try {
+            this.productFileUtil.writeListToFile("product", this.homePage.productInterface.productListItems);
+        } catch (IOException ex) {
+            Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.homePage.productInterface.addNewProductToListPanel(new Product(productId, productName, productType, productNumInStock, productInputPrice, productSellPrice, releaseDate, productCategory, productAuthorDirectorMusician, productContributorActorSinger));
         this.homePage.menuClicked(homePage.productInterface);
     }//GEN-LAST:event_createBtnMouseClicked
 
+    private void productTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productTypeComboBoxActionPerformed
+        // TODO productTypeadd your handling code here:
+    }//GEN-LAST:event_productTypeComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel InterfaceTitleLabel;
@@ -331,6 +348,7 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JPanel dataRelease;
     private javax.swing.JPanel formPanel;
     private javax.swing.JPanel headerPanel;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -341,12 +359,10 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextArea productActorTextArea;
@@ -356,7 +372,7 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JLabel productCategoryLabel;
     private javax.swing.JPanel productCategoryPanel;
     private javax.swing.JTextArea productCategoryTextArea;
-    private javax.swing.JTextArea productDatareleaseTextArea;
+    private com.toedter.calendar.JDateChooser productDateRelease;
     private javax.swing.JLabel productIdPanel;
     private javax.swing.JLabel productIdPanel1;
     private javax.swing.JTextArea productIdTextArea;
@@ -369,8 +385,8 @@ public class AddProduct extends javax.swing.JPanel {
     private javax.swing.JTextArea productNumInStockTextArea;
     private javax.swing.JPanel productSellPricePanel;
     private javax.swing.JTextArea productSellPriceTextArea;
+    private javax.swing.JComboBox<String> productTypeComboBox;
     private javax.swing.JLabel productTypeLabel;
     private javax.swing.JPanel productTypePanel;
-    private javax.swing.JTextArea productTypeTextArea;
     // End of variables declaration//GEN-END:variables
 }

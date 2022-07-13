@@ -1,40 +1,79 @@
 package com.mycompany.mediaone.View;
 
-import com.mycompany.Model.Product;
-import com.mycompany.Util.WrapLayout;
-import com.mycompany.mediaone.View.component.ProductCard;
-import java.util.ArrayList;
+import com.mycompany.mediaone.Model.Product;
+import com.mycompany.SharedType.EProductType;
+import com.mycompany.mediaone.Util.ProductUtil;
+import com.mycompany.SharedType.WrapLayout;
+import com.mycompany.mediaone.Component.ProductCard;
+import com.mycompany.mediaone.Util.FileUtil;
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductInterface extends javax.swing.JPanel {
-    
-    private HomePage homePage;
-    
-    public List<Product> productListItems = new ArrayList();
-    
+
+    private final HomePage homePage;
+
+    private FileUtil<Product> productFileUtil = new FileUtil<>();
+
+    public List<Product> productListItems;
+
+    private ProductUtil productUtil = new ProductUtil();
+
     public ProductInterface(HomePage homePage) {
         initComponents();
-        this.productListItems.add(new Product("001", "Titanic", "Film CD", 20, 40000, 50000));
-        this.productListItems.add(new Product("002", "Chipmunk", "Film CD", 20, 40000, 50000));
+//        this.productListItems.add(new Product("001", "Titanic", EProductType.FILMCD, 20, 40000, 50000));
+//        this.productListItems.add(new Product("002", "Chipmunk", EProductType.FILMCD, 20, 40000, 50000));
+        System.out.println(EProductType.FILMCD);
         this.homePage = homePage;
-        
-        for (Product productListItem : productListItems) {
-            this.ProductListPanel.add(new ProductCard(productListItem, this.homePage));
-        }
         this.ProductListPanel.setLayout(new WrapLayout());
+
+        try {
+            this.productListItems = this.productFileUtil.readFile("product");
+
+            System.out.println(this.productFileUtil.readFile("product"));
+
+            for (Product productListItem : productListItems) {
+                this.ProductListPanel.add(new ProductCard(productListItem, this.homePage));
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class object not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        }
+
     }
-    
+
     public void addNewProductToListPanel(Product product) {
         this.ProductListPanel.add(new ProductCard(product, this.homePage));
     }
-    
-    public void reRenderProductListPanel() {
+
+    public void reRenderProductListPanel(List<Product> curentRenderProductList) {
         this.ProductListPanel.removeAll();
-        for (Product productListItem : productListItems) {
-            this.addNewProductToListPanel(productListItem);
+        ProductListPanel.revalidate();
+        ProductListPanel.repaint();
+        for (Product currentProductItem : curentRenderProductList) {
+            this.addNewProductToListPanel(currentProductItem);
         }
     }
-    
+
+    public void filterProductListByType(String productType) {
+        productLabel.setText(productType);
+        if (!"All Product".equals(productType)) {
+            List<Product> filteredProduct = this.productListItems.stream()
+                    .filter(product -> productType.equals(product.getType()))
+                    .collect(Collectors.toList());
+
+            productLabel.setText(productType);
+            for (int i = 0; i < productListItems.size(); i++) {
+                System.out.println(productListItems.get(i));
+            }
+            reRenderProductListPanel(filteredProduct);
+        } else {
+            reRenderProductListPanel(productListItems);
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -44,10 +83,10 @@ public class ProductInterface extends javax.swing.JPanel {
         InterfaceTitleLabel = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         typeProductFilterPanel = new javax.swing.JPanel();
-        musicCDField = new javax.swing.JTextField();
-        filmCDField = new javax.swing.JTextField();
-        bookField = new javax.swing.JTextField();
-        allProductField = new javax.swing.JTextField();
+        allProductField = new javax.swing.JButton();
+        musicCdField = new javax.swing.JButton();
+        bookField = new javax.swing.JButton();
+        filmCdField = new javax.swing.JButton();
         productTypeHeader = new javax.swing.JPanel();
         productLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -90,41 +129,9 @@ public class ProductInterface extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        typeProductFilterPanel.setLayout(new java.awt.GridLayout(1, 0));
-
-        musicCDField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        musicCDField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        musicCDField.setText("Music CD ");
-        musicCDField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                musicCDFieldMouseClicked(evt);
-            }
-        });
-        typeProductFilterPanel.add(musicCDField);
-
-        filmCDField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        filmCDField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        filmCDField.setText("Film CD ");
-        filmCDField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                filmCDFieldMouseClicked(evt);
-            }
-        });
-        typeProductFilterPanel.add(filmCDField);
-
-        bookField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        bookField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        bookField.setText("Book ");
-        bookField.setToolTipText("");
-        bookField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bookFieldMouseClicked(evt);
-            }
-        });
-        typeProductFilterPanel.add(bookField);
+        typeProductFilterPanel.setLayout(new java.awt.GridLayout(1, 0, 2, 0));
 
         allProductField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        allProductField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         allProductField.setText("All Product");
         allProductField.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -133,9 +140,41 @@ public class ProductInterface extends javax.swing.JPanel {
         });
         typeProductFilterPanel.add(allProductField);
 
+        musicCdField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        musicCdField.setText("Music CD");
+        musicCdField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                musicCdFieldMouseClicked(evt);
+            }
+        });
+        typeProductFilterPanel.add(musicCdField);
+
+        bookField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bookField.setText("Book");
+        bookField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookFieldMouseClicked(evt);
+            }
+        });
+        bookField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookFieldActionPerformed(evt);
+            }
+        });
+        typeProductFilterPanel.add(bookField);
+
+        filmCdField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        filmCdField.setText("Film CD");
+        filmCdField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filmCdFieldMouseClicked(evt);
+            }
+        });
+        typeProductFilterPanel.add(filmCdField);
+
         productLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         productLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        productLabel.setText("Music CD");
+        productLabel.setText("All Product");
 
         javax.swing.GroupLayout productTypeHeaderLayout = new javax.swing.GroupLayout(productTypeHeader);
         productTypeHeader.setLayout(productTypeHeaderLayout);
@@ -183,40 +222,49 @@ public class ProductInterface extends javax.swing.JPanel {
         add(MainProductInterface);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void musicCDFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicCDFieldMouseClicked
-        this.productLabel.setText("Music CD");
-    }//GEN-LAST:event_musicCDFieldMouseClicked
-
-    private void filmCDFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filmCDFieldMouseClicked
-        this.productLabel.setText("Film CD");
-    }//GEN-LAST:event_filmCDFieldMouseClicked
-
-    private void bookFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookFieldMouseClicked
-        this.productLabel.setText("Book");
-    }//GEN-LAST:event_bookFieldMouseClicked
-
-    private void allProductFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allProductFieldMouseClicked
-        this.productLabel.setText("All Product");
-    }//GEN-LAST:event_allProductFieldMouseClicked
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         this.homePage.menuClicked(homePage.addProduct);
 
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void musicCdFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicCdFieldMouseClicked
+        // TODO add your handling code here:
+        filterProductListByType("Music CD");
+    }//GEN-LAST:event_musicCdFieldMouseClicked
+
+    private void bookFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bookFieldActionPerformed
+
+    private void bookFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookFieldMouseClicked
+        // TODO add your handling code here:
+        filterProductListByType("Book");
+    }//GEN-LAST:event_bookFieldMouseClicked
+
+    private void filmCdFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filmCdFieldMouseClicked
+        // TODO add your handling code here:
+        filterProductListByType("Film CD");
+    }//GEN-LAST:event_filmCdFieldMouseClicked
+
+    private void allProductFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_allProductFieldMouseClicked
+        // TODO add your handling code here:
+        filterProductListByType("All Product");
+
+    }//GEN-LAST:event_allProductFieldMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel InterfaceTitleLabel;
     private javax.swing.JPanel MainProductInterface;
     private javax.swing.JPanel ProductListPanel;
-    private javax.swing.JTextField allProductField;
-    private javax.swing.JTextField bookField;
-    private javax.swing.JTextField filmCDField;
+    private javax.swing.JButton allProductField;
+    private javax.swing.JButton bookField;
+    private javax.swing.JButton filmCdField;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField musicCDField;
+    private javax.swing.JButton musicCdField;
     private javax.swing.JLabel productLabel;
     private javax.swing.JPanel productTypeHeader;
     private javax.swing.JPanel typeProductFilterPanel;

@@ -1,6 +1,6 @@
-package com.mycompany.mediaone.View.component;
+package com.mycompany.mediaone.Component;
 
-import com.mycompany.Model.Product;
+import com.mycompany.mediaone.Model.Product;
 import com.mycompany.mediaone.View.HomePage;
 
 public class ProductCard extends javax.swing.JPanel {

@@ -1,11 +1,14 @@
 package com.mycompany.mediaone.View;
 
-import com.mycompany.Model.Product;
+import com.mycompany.mediaone.Model.Product;
+import com.mycompany.mediaone.Util.ProductUtil;
+import java.util.Date;
 
 public class ProductDetail extends javax.swing.JPanel {
 
-    private HomePage homePage;
+    private final HomePage homePage;
     private Product productInfo;
+    private final ProductUtil productUtil = new ProductUtil();
 
     public ProductDetail(HomePage homePage) {
         initComponents();
@@ -15,11 +18,33 @@ public class ProductDetail extends javax.swing.JPanel {
     public void setProductInfo(Product product) {
         this.productInfo = product;
         this.productNameTextArea.setText(product.getName());
-        this.productTypeTextArea.setText(product.getType());
+        this.productTypeComboBox.setSelectedItem(productUtil.convertStringToEProductType(product.getType()));
         this.productIdTextArea.setText(product.getId());
         this.productSellPriceTextArea.setText(String.valueOf(product.getSellPrice()));
         this.productInputPriceTextArea.setText(String.valueOf(product.getInputPrice()));
         this.productNumInStockTextArea.setText(String.valueOf(product.getNumberInStock()));
+        this.productDateRelease.setDate(product.getDateRelease());
+        this.productAuthorTextArea.setText(product.getListDirectorMusicianAuthor());
+        this.productActorTextArea.setText(product.getListActorSingerContributor());
+        this.productCategoryTextArea.setText(product.getCategory());
+
+        switch (productUtil.convertStringToEProductType(product.getType())) {
+            case BOOK: {
+                this.productAuthorLabel.setText("Author");
+                this.productActorSingerContributorLabel.setText("Contributor");
+            }
+            break;
+            case FILMCD: {
+                this.productAuthorLabel.setText("Director");
+                this.productActorSingerContributorLabel.setText("Actor");
+            }
+            break;
+            case MUSICCD: {
+                this.productAuthorLabel.setText("Musician");
+                this.productActorSingerContributorLabel.setText("Singer");
+            }
+            break;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -41,8 +66,7 @@ public class ProductDetail extends javax.swing.JPanel {
         productNameTextArea = new javax.swing.JTextArea();
         productTypePanel = new javax.swing.JPanel();
         productTypeLabel = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        productTypeTextArea = new javax.swing.JTextArea();
+        productTypeComboBox = new javax.swing.JComboBox<>();
         productCategoryPanel = new javax.swing.JPanel();
         productCategoryLabel = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -52,7 +76,7 @@ public class ProductDetail extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         productAuthorTextArea = new javax.swing.JTextArea();
         productListActorSinger = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
+        productActorSingerContributorLabel = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
         productActorTextArea = new javax.swing.JTextArea();
         productSellPricePanel = new javax.swing.JPanel();
@@ -69,8 +93,7 @@ public class ProductDetail extends javax.swing.JPanel {
         productNumInStockTextArea = new javax.swing.JTextArea();
         dataRelease = new javax.swing.JPanel();
         productIdPanel1 = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        productDatareleaseTextArea = new javax.swing.JTextArea();
+        productDateRelease = new com.toedter.calendar.JDateChooser();
         backBtnPanel = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
         saveBtnPanel = new javax.swing.JPanel();
@@ -111,6 +134,7 @@ public class ProductDetail extends javax.swing.JPanel {
         jPanel3.add(productIdPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
         productIdTextArea.setEditable(false);
+        productIdTextArea.setBackground(new java.awt.Color(204, 204, 204));
         productIdTextArea.setColumns(20);
         productIdTextArea.setRows(5);
         jScrollPane1.setViewportView(productIdTextArea);
@@ -137,11 +161,13 @@ public class ProductDetail extends javax.swing.JPanel {
         productTypeLabel.setText("Product Type");
         productTypePanel.add(productTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        productTypeTextArea.setColumns(20);
-        productTypeTextArea.setRows(5);
-        jScrollPane3.setViewportView(productTypeTextArea);
-
-        productTypePanel.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 50));
+        productTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Film CD", "Music CD", "Book" }));
+        productTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productTypeComboBoxActionPerformed(evt);
+            }
+        });
+        productTypePanel.add(productTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 50));
 
         formPanel.add(productTypePanel);
 
@@ -173,8 +199,8 @@ public class ProductDetail extends javax.swing.JPanel {
 
         productListActorSinger.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel18.setText("List actor/signer");
-        productListActorSinger.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
+        productActorSingerContributorLabel.setText("List actor/signer");
+        productListActorSinger.add(productActorSingerContributorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 30));
 
         productActorTextArea.setColumns(20);
         productActorTextArea.setRows(5);
@@ -228,11 +254,8 @@ public class ProductDetail extends javax.swing.JPanel {
         productIdPanel1.setText("Date release");
         dataRelease.add(productIdPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
-        productDatareleaseTextArea.setColumns(20);
-        productDatareleaseTextArea.setRows(5);
-        jScrollPane8.setViewportView(productDatareleaseTextArea);
-
-        dataRelease.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 50));
+        productDateRelease.setDateFormatString("dd-MM-yyyy");
+        dataRelease.add(productDateRelease, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 330, 50));
 
         formPanel.add(dataRelease);
 
@@ -249,7 +272,7 @@ public class ProductDetail extends javax.swing.JPanel {
         backBtnPanelLayout.setHorizontalGroup(
             backBtnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backBtnPanelLayout.createSequentialGroup()
-                .addContainerGap(153, Short.MAX_VALUE)
+                .addContainerGap(155, Short.MAX_VALUE)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -278,7 +301,7 @@ public class ProductDetail extends javax.swing.JPanel {
             .addGroup(saveBtnPanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         saveBtnPanelLayout.setVerticalGroup(
             saveBtnPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,18 +344,26 @@ public class ProductDetail extends javax.swing.JPanel {
         // TODO add your handling code here:
         var productName = productNameTextArea.getText();
         var productId = productIdTextArea.getText();
-        var productType = productTypeTextArea.getText();
+        var productType = productTypeComboBox.getSelectedItem().toString();
         int productSellPrice = Integer.parseInt(productSellPriceTextArea.getText());
         int productInputPrice = Integer.parseInt(productInputPriceTextArea.getText());
         int productNumInStock = Integer.parseInt(productNumInStockTextArea.getText());
+        Date releaseDate = productDateRelease.getDate();
+        var productCategory = productCategoryTextArea.getText();
+        var productContributorActorSinger = productActorTextArea.getText();
+        var productAuthorDirectorMusician = productAuthorTextArea.getText();
 
         int indexProduct = this.homePage.productInterface.productListItems.indexOf(this.productInfo);
 
-        this.homePage.productInterface.productListItems.set(indexProduct, new Product(productId, productName, productType, productNumInStock, productInputPrice, productSellPrice));
+        this.homePage.productInterface.productListItems.set(indexProduct, new Product(productId, productName, productUtil.convertStringToEProductType(productType), productNumInStock, productInputPrice, productSellPrice, releaseDate, productCategory, productAuthorDirectorMusician, productContributorActorSinger));
 
-        this.homePage.productInterface.reRenderProductListPanel();
+        this.homePage.productInterface.reRenderProductListPanel(this.homePage.productInterface.productListItems);
         this.homePage.menuClicked(homePage.productInterface);
     }//GEN-LAST:event_saveBtnMouseClicked
+
+    private void productTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productTypeComboBoxActionPerformed
+        // TODO productTypeadd your handling code here:
+    }//GEN-LAST:event_productTypeComboBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -346,20 +377,18 @@ public class ProductDetail extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel productActorSingerContributorLabel;
     private javax.swing.JTextArea productActorTextArea;
     private javax.swing.JLabel productAuthorLabel;
     private javax.swing.JPanel productAuthorPanel;
@@ -367,7 +396,7 @@ public class ProductDetail extends javax.swing.JPanel {
     private javax.swing.JLabel productCategoryLabel;
     private javax.swing.JPanel productCategoryPanel;
     private javax.swing.JTextArea productCategoryTextArea;
-    private javax.swing.JTextArea productDatareleaseTextArea;
+    private com.toedter.calendar.JDateChooser productDateRelease;
     private javax.swing.JLabel productIdPanel;
     private javax.swing.JLabel productIdPanel1;
     private javax.swing.JTextArea productIdTextArea;
@@ -380,9 +409,9 @@ public class ProductDetail extends javax.swing.JPanel {
     private javax.swing.JTextArea productNumInStockTextArea;
     private javax.swing.JPanel productSellPricePanel;
     private javax.swing.JTextArea productSellPriceTextArea;
+    private javax.swing.JComboBox<String> productTypeComboBox;
     private javax.swing.JLabel productTypeLabel;
     private javax.swing.JPanel productTypePanel;
-    private javax.swing.JTextArea productTypeTextArea;
     private javax.swing.JButton saveBtn;
     private javax.swing.JPanel saveBtnPanel;
     // End of variables declaration//GEN-END:variables

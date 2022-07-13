@@ -1,4 +1,4 @@
-package com.mycompany.Util;
+package com.mycompany.SharedType;
 
 import java.awt.Component;
 import java.awt.Container;
