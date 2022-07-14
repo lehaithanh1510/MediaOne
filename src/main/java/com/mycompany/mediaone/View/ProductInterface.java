@@ -22,9 +22,7 @@ public class ProductInterface extends javax.swing.JPanel {
 
     public ProductInterface(HomePage homePage) {
         initComponents();
-//        this.productListItems.add(new Product("001", "Titanic", EProductType.FILMCD, 20, 40000, 50000));
-//        this.productListItems.add(new Product("002", "Chipmunk", EProductType.FILMCD, 20, 40000, 50000));
-        System.out.println(EProductType.FILMCD);
+
         this.homePage = homePage;
         this.ProductListPanel.setLayout(new WrapLayout());
 

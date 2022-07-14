@@ -15,13 +15,27 @@ public class ProductCard extends javax.swing.JPanel {
         this.productType.setText(product.getType());
         this.homePage = homePage;
         this.product = product;
+        switch (product.getType()) {
+            case "Film CD": {
+
+            }
+            break;
+            case "Music CD": {
+
+            }
+            break;
+            case "Book": {
+
+            }
+            break;
+        }
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        productImage = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         productName = new javax.swing.JLabel();
         productType = new javax.swing.JLabel();
@@ -33,20 +47,20 @@ public class ProductCard extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setAlignmentX(0.1F);
+        productImage.setAlignmentX(0.1F);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout productImageLayout = new javax.swing.GroupLayout(productImage);
+        productImage.setLayout(productImageLayout);
+        productImageLayout.setHorizontalGroup(
+            productImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 108, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        productImageLayout.setVerticalGroup(
+            productImageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 114, Short.MAX_VALUE)
         );
 
-        add(jPanel1);
+        add(productImage);
 
         jPanel6.setLayout(new java.awt.GridLayout(2, 1));
 
@@ -104,10 +118,10 @@ public class ProductCard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editBtn;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel productImage;
     private javax.swing.JLabel productName;
     private javax.swing.JLabel productPrice;
     private javax.swing.JLabel productType;

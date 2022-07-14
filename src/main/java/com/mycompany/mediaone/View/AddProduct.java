@@ -5,6 +5,7 @@ import com.mycompany.mediaone.Util.FileUtil;
 import com.mycompany.mediaone.Util.ProductUtil;
 import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,9 +15,22 @@ public class AddProduct extends javax.swing.JPanel {
     private ProductUtil productUtil = new ProductUtil();
     private FileUtil<Product> productFileUtil = new FileUtil<>();
 
+    private void resetAllTextAfterCreateProduct() {
+        productNameTextArea.setText("");
+        productIdTextArea.setText(UUID.randomUUID().toString());
+        productSellPriceTextArea.setText("");
+        productInputPriceTextArea.setText("");
+        productNumInStockTextArea.setText("");
+        productDateRelease.setCalendar(null);
+        productActorTextArea.setText("");
+        productCategoryTextArea.setText("");
+        productAuthorTextArea.setText("");
+    }
+
     public AddProduct(HomePage homePage) {
         initComponents();
         this.homePage = homePage;
+        this.productIdTextArea.setText(UUID.randomUUID().toString());
     }
 
     @SuppressWarnings("unchecked")
@@ -108,6 +122,8 @@ public class AddProduct extends javax.swing.JPanel {
         productIdPanel.setText("Product ID");
         jPanel3.add(productIdPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 30));
 
+        productIdTextArea.setEditable(false);
+        productIdTextArea.setBackground(new java.awt.Color(204, 204, 204));
         productIdTextArea.setColumns(20);
         productIdTextArea.setRows(5);
         jScrollPane1.setViewportView(productIdTextArea);
@@ -311,6 +327,7 @@ public class AddProduct extends javax.swing.JPanel {
     private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
         // TODO add your handling code here:
         this.homePage.menuClicked(homePage.productInterface);
+        this.resetAllTextAfterCreateProduct();
     }//GEN-LAST:event_backBtnMouseClicked
 
     private void createBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBtnMouseClicked
@@ -333,6 +350,7 @@ public class AddProduct extends javax.swing.JPanel {
         }
         this.homePage.productInterface.addNewProductToListPanel(new Product(productId, productName, productType, productNumInStock, productInputPrice, productSellPrice, releaseDate, productCategory, productAuthorDirectorMusician, productContributorActorSinger));
         this.homePage.menuClicked(homePage.productInterface);
+        this.resetAllTextAfterCreateProduct();
     }//GEN-LAST:event_createBtnMouseClicked
 
     private void productTypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productTypeComboBoxActionPerformed
