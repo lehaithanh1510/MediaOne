@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.mediaone.Model;
 
-/**
- *
- * @author MY LAPTOP
- */
 public class BillItem {
 
     private int quantity;
@@ -15,6 +7,10 @@ public class BillItem {
     private float unitPrice;
     private String productId;
     private float amount;
+
+    public float getAmount() {
+        return amount;
+    }
 
     public int getQuantity() {
         return quantity;
@@ -24,7 +20,7 @@ public class BillItem {
         return productName;
     }
 
-    public int getUnitPrice() {
+    public float getUnitPrice() {
         return unitPrice;
     }
 

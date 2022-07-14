@@ -1,13 +1,38 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.mediaone.Model;
 
-/**
- *
- * @author MY LAPTOP
- */
+import java.util.Date;
+import java.util.List;
+
 public class Bill {
-    
+
+    private String id;
+    private int total;
+    private Date createdAt;
+    private Customer customerDetails;
+    private List<BillItem> items;
+    private String type;
+
+    public String getId() {
+        return id;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public Customer getCustomerDetails() {
+        return customerDetails;
+    }
+
+    public List<BillItem> getItems() {
+        return items;
+    }
+
+    public String getType() {
+        return type;
+    }
 }
