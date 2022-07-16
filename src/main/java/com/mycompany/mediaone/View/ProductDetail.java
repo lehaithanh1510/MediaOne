@@ -1,14 +1,19 @@
 package com.mycompany.mediaone.View;
 
 import com.mycompany.mediaone.Model.Product;
+import com.mycompany.mediaone.Util.FileUtil;
 import com.mycompany.mediaone.Util.ProductUtil;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductDetail extends javax.swing.JPanel {
 
     private final HomePage homePage;
     private Product productInfo;
     private final ProductUtil productUtil = new ProductUtil();
+    private FileUtil<Product> productFileUtil = new FileUtil<>();
 
     public ProductDetail(HomePage homePage) {
         initComponents();
@@ -356,7 +361,11 @@ public class ProductDetail extends javax.swing.JPanel {
         int indexProduct = this.homePage.productInterface.productListItems.indexOf(this.productInfo);
 
         this.homePage.productInterface.productListItems.set(indexProduct, new Product(productId, productName, productUtil.convertStringToEProductType(productType), productNumInStock, productInputPrice, productSellPrice, releaseDate, productCategory, productAuthorDirectorMusician, productContributorActorSinger));
-
+        try {
+            this.productFileUtil.writeListToFile("product", this.homePage.productInterface.productListItems);
+        } catch (IOException ex) {
+            Logger.getLogger(AddProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.homePage.productInterface.reRenderProductListPanel(this.homePage.productInterface.productListItems);
         this.homePage.menuClicked(homePage.productInterface);
     }//GEN-LAST:event_saveBtnMouseClicked
