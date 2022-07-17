@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package com.mycompany.mediaone.View;
+package com.mycompany.mediaone.Component;
 
 /**
  *
  * @author MY LAPTOP
  */
-public class OrderInterface extends javax.swing.JPanel {
+public class BillCard extends javax.swing.JPanel {
 
     /**
-     * Creates new form OrderInterface
+     * Creates new form BillCard
      */
-    public OrderInterface() {
+    public BillCard() {
         initComponents();
     }
 

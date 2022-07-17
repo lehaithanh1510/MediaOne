@@ -1,8 +1,9 @@
-package com.mycompany.mediaone.View;
+package com.mycompany.mediaone.View.Product;
 
 import com.mycompany.mediaone.Model.Product;
 import com.mycompany.mediaone.Util.FileUtil;
 import com.mycompany.mediaone.Util.ProductUtil;
+import com.mycompany.mediaone.View.HomePage;
 import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;

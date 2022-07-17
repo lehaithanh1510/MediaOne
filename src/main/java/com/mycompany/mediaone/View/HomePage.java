@@ -1,15 +1,19 @@
 package com.mycompany.mediaone.View;
 
+import com.mycompany.mediaone.View.Bill.BillInterface;
+import com.mycompany.mediaone.View.Product.AddProduct;
+import com.mycompany.mediaone.View.Product.ProductInterface;
+import com.mycompany.mediaone.View.Product.ProductDetail;
 import java.awt.Color;
 import javax.swing.JPanel;
 
 public class HomePage extends javax.swing.JFrame {
 
     public com.mycompany.mediaone.View.HomeInterface homeInterface = new HomeInterface();
-    public com.mycompany.mediaone.View.ProductInterface productInterface = new ProductInterface(this);
-    public com.mycompany.mediaone.View.AddProduct addProduct = new AddProduct(this);
-    public com.mycompany.mediaone.View.ProductDetail productDetail = new ProductDetail(this);
-
+    public com.mycompany.mediaone.View.Product.ProductInterface productInterface = new ProductInterface(this);
+    public com.mycompany.mediaone.View.Product.AddProduct addProduct = new AddProduct(this);
+    public com.mycompany.mediaone.View.Product.ProductDetail productDetail = new ProductDetail(this);
+    public com.mycompany.mediaone.View.Bill.BillInterface orderInterface = new BillInterface(this);
     public HomePage() {
         initComponents();
 
@@ -17,6 +21,7 @@ public class HomePage extends javax.swing.JFrame {
         this.contentPanel.add(productInterface);
         this.contentPanel.add(addProduct);
         this.contentPanel.add(productDetail);
+        this.contentPanel.add(orderInterface);
     }
 
     @SuppressWarnings("unchecked")
@@ -236,6 +241,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void orderChoosePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderChoosePanelMousePressed
         orderChoosePanel.setBackground(new Color(60, 179, 113));
+        menuClicked(this.orderInterface);
     }//GEN-LAST:event_orderChoosePanelMousePressed
 
     private void orderChoosePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderChoosePanelMouseEntered

@@ -6,29 +6,67 @@ import java.util.List;
 public class Bill {
 
     private String id;
-    private int total;
-    private Date createdAt;
-    private Customer customerDetails;
-    private List<BillItem> items;
+    private double total; //grand total
+    private String createdAt;
+    private String customer;
+    private String items;
     private String type;
+
+    public Bill() {
+    }
+
+    public Bill(String id, double total, String createdAt, String customer, String items, String type) {
+        this.id = id;
+        this.total = total;
+        this.createdAt = createdAt;
+        this.customer = customer;
+        this.items = items;
+        this.type = type;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public void setItems(String items) {
+        this.items = items;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
 
     public String getId() {
         return id;
     }
 
-    public int getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public Customer getCustomerDetails() {
-        return customerDetails;
+    public String getCustomer() {
+        return customer;
     }
 
-    public List<BillItem> getItems() {
+    public String getItems() {
         return items;
     }
 
