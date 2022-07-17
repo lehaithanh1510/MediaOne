@@ -1,4 +1,4 @@
-package com.mycompany.mediaone.View;
+package com.mycompany.mediaone.View.Product;
 
 import com.mycompany.mediaone.Model.Product;
 import com.mycompany.SharedType.EProductType;
@@ -6,6 +6,7 @@ import com.mycompany.mediaone.Util.ProductUtil;
 import com.mycompany.SharedType.WrapLayout;
 import com.mycompany.mediaone.Component.ProductCard;
 import com.mycompany.mediaone.Util.FileUtil;
+import com.mycompany.mediaone.View.HomePage;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;

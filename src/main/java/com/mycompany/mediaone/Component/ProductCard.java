@@ -2,7 +2,7 @@ package com.mycompany.mediaone.Component;
 
 import com.mycompany.mediaone.Model.Product;
 import com.mycompany.mediaone.Util.FileUtil;
-import com.mycompany.mediaone.View.AddProduct;
+import com.mycompany.mediaone.View.Product.AddProduct;
 import com.mycompany.mediaone.View.HomePage;
 import java.awt.Image;
 import java.io.IOException;
