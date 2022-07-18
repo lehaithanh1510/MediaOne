@@ -1,4 +1,4 @@
-package com.mycompany.mediaone.Model;
+package com.mycompany.mediaone.Model.BillModel;
 
 public class Customer {
     private String name;

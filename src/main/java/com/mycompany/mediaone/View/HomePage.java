@@ -1,6 +1,8 @@
 package com.mycompany.mediaone.View;
 
+import com.mycompany.mediaone.View.Bill.BillBuyDetail;
 import com.mycompany.mediaone.View.Bill.BillInterface;
+import com.mycompany.mediaone.View.Bill.BillSoldDetail;
 import com.mycompany.mediaone.View.Product.AddProduct;
 import com.mycompany.mediaone.View.Product.ProductInterface;
 import com.mycompany.mediaone.View.Product.ProductDetail;
@@ -13,7 +15,10 @@ public class HomePage extends javax.swing.JFrame {
     public com.mycompany.mediaone.View.Product.ProductInterface productInterface = new ProductInterface(this);
     public com.mycompany.mediaone.View.Product.AddProduct addProduct = new AddProduct(this);
     public com.mycompany.mediaone.View.Product.ProductDetail productDetail = new ProductDetail(this);
-    public com.mycompany.mediaone.View.Bill.BillInterface orderInterface = new BillInterface(this);
+    public com.mycompany.mediaone.View.Bill.BillInterface billInterface = new BillInterface(this);
+    public com.mycompany.mediaone.View.Bill.BillBuyDetail addBillBuy = new BillBuyDetail(this, "add");
+//    public com.mycompany.mediaone.View.Bill.BillSoldDetail addBillSold = new BillSoldDetail(this, "add");
+
     public HomePage() {
         initComponents();
 
@@ -21,7 +26,9 @@ public class HomePage extends javax.swing.JFrame {
         this.contentPanel.add(productInterface);
         this.contentPanel.add(addProduct);
         this.contentPanel.add(productDetail);
-        this.contentPanel.add(orderInterface);
+        this.contentPanel.add(billInterface);
+        this.contentPanel.add(addBillBuy);
+//        this.contentPanel.add(addBillSold);
     }
 
     @SuppressWarnings("unchecked")
@@ -36,9 +43,9 @@ public class HomePage extends javax.swing.JFrame {
         productChoosePanel = new javax.swing.JPanel();
         productIcon = new javax.swing.JLabel();
         productLabel = new javax.swing.JLabel();
-        orderChoosePanel = new javax.swing.JPanel();
-        orderIcon = new javax.swing.JLabel();
-        orderLabel = new javax.swing.JLabel();
+        billChoosePanel = new javax.swing.JPanel();
+        billIcon = new javax.swing.JLabel();
+        billLabel = new javax.swing.JLabel();
         profitChoosePanel = new javax.swing.JPanel();
         profitIcon = new javax.swing.JLabel();
         profitLabel = new javax.swing.JLabel();
@@ -106,31 +113,31 @@ public class HomePage extends javax.swing.JFrame {
         productLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         productChoosePanel.add(productLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 80, 30));
 
-        orderChoosePanel.setBackground(new java.awt.Color(0, 153, 153));
-        orderChoosePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+        billChoosePanel.setBackground(new java.awt.Color(0, 153, 153));
+        billChoosePanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                orderChoosePanelMouseEntered(evt);
+                billChoosePanelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                orderChoosePanelMouseExited(evt);
+                billChoosePanelMouseExited(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                orderChoosePanelMousePressed(evt);
+                billChoosePanelMousePressed(evt);
             }
         });
-        orderChoosePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        billChoosePanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        orderIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\lib\\unknown\\binary\\image\\order.png")); // NOI18N
-        orderChoosePanel.add(orderIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 40, 50));
+        billIcon.setIcon(new javax.swing.ImageIcon("C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\lib\\unknown\\binary\\image\\order.png")); // NOI18N
+        billChoosePanel.add(billIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 40, 50));
 
-        orderLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        orderLabel.setForeground(new java.awt.Color(255, 255, 255));
-        orderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        orderLabel.setText("ORDER");
-        orderLabel.setToolTipText("");
-        orderLabel.setFocusTraversalPolicyProvider(true);
-        orderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        orderChoosePanel.add(orderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 80, 30));
+        billLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        billLabel.setForeground(new java.awt.Color(255, 255, 255));
+        billLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        billLabel.setText("BILL");
+        billLabel.setToolTipText("");
+        billLabel.setFocusTraversalPolicyProvider(true);
+        billLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        billChoosePanel.add(billLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 80, 30));
 
         profitChoosePanel.setBackground(new java.awt.Color(0, 153, 153));
         profitChoosePanel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -166,7 +173,7 @@ public class HomePage extends javax.swing.JFrame {
         menuPanelLayout.setHorizontalGroup(
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(productChoosePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(orderChoosePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(billChoosePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(profitChoosePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(homeChoosePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(logoIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,10 +188,10 @@ public class HomePage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(productChoosePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(orderChoosePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(billChoosePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(profitChoosePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         homePanel.add(menuPanel);
@@ -201,9 +208,7 @@ public class HomePage extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(homePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(homePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -235,18 +240,18 @@ public class HomePage extends javax.swing.JFrame {
         menuClicked(this.productInterface);
     }//GEN-LAST:event_productChoosePanelMousePressed
 
-    private void orderChoosePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderChoosePanelMouseExited
-        orderChoosePanel.setBackground(new Color(0, 153, 153));
-    }//GEN-LAST:event_orderChoosePanelMouseExited
+    private void billChoosePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billChoosePanelMouseExited
+        billChoosePanel.setBackground(new Color(0, 153, 153));
+    }//GEN-LAST:event_billChoosePanelMouseExited
 
-    private void orderChoosePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderChoosePanelMousePressed
-        orderChoosePanel.setBackground(new Color(60, 179, 113));
-        menuClicked(this.orderInterface);
-    }//GEN-LAST:event_orderChoosePanelMousePressed
+    private void billChoosePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billChoosePanelMousePressed
+        billChoosePanel.setBackground(new Color(60, 179, 113));
+        menuClicked(this.billInterface);
+    }//GEN-LAST:event_billChoosePanelMousePressed
 
-    private void orderChoosePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderChoosePanelMouseEntered
-        orderChoosePanel.setBackground(new Color(112, 128, 144));
-    }//GEN-LAST:event_orderChoosePanelMouseEntered
+    private void billChoosePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_billChoosePanelMouseEntered
+        billChoosePanel.setBackground(new Color(112, 128, 144));
+    }//GEN-LAST:event_billChoosePanelMouseEntered
 
     private void profitChoosePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profitChoosePanelMouseExited
         profitChoosePanel.setBackground(new Color(0, 153, 153));
@@ -303,20 +308,23 @@ public class HomePage extends javax.swing.JFrame {
         this.productInterface.setVisible((false));
         this.addProduct.setVisible((false));
         this.productDetail.setVisible(false);
+        this.billInterface.setVisible(false);
+        this.addBillBuy.setVisible(false);
+//        this.addBillSold.setVisible(false);
 
         panel.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel billChoosePanel;
+    private javax.swing.JLabel billIcon;
+    private javax.swing.JLabel billLabel;
     private javax.swing.JPanel contentPanel;
     private javax.swing.JPanel homeChoosePanel;
     private javax.swing.JLabel homeIcon;
     private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel homePanel;
     private javax.swing.JPanel menuPanel;
-    private javax.swing.JPanel orderChoosePanel;
-    private javax.swing.JLabel orderIcon;
-    private javax.swing.JLabel orderLabel;
     private javax.swing.JPanel productChoosePanel;
     private javax.swing.JLabel productIcon;
     private javax.swing.JLabel productLabel;

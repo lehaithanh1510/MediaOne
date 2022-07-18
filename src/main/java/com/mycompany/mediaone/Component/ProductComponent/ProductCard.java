@@ -1,4 +1,4 @@
-package com.mycompany.mediaone.Component;
+package com.mycompany.mediaone.Component.ProductComponent;
 
 import com.mycompany.mediaone.Model.Product;
 import com.mycompany.mediaone.Util.FileUtil;

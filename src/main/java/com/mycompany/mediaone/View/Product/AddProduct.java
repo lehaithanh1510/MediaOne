@@ -332,7 +332,6 @@ public class AddProduct extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnMouseClicked
 
     private void createBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBtnMouseClicked
-        // TODO add your handling code here:
         var productName = productNameTextArea.getText();
         var productId = productIdTextArea.getText();
         var productType = productUtil.convertStringToEProductType((productTypeComboBox.getSelectedItem().toString()));

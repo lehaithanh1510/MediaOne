@@ -4,7 +4,7 @@ import com.mycompany.mediaone.Model.Product;
 import com.mycompany.SharedType.EProductType;
 import com.mycompany.mediaone.Util.ProductUtil;
 import com.mycompany.SharedType.WrapLayout;
-import com.mycompany.mediaone.Component.ProductCard;
+import com.mycompany.mediaone.Component.ProductComponent.ProductCard;
 import com.mycompany.mediaone.Util.FileUtil;
 import com.mycompany.mediaone.View.HomePage;
 import java.io.IOException;
@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductInterface extends javax.swing.JPanel {
-
     private final HomePage homePage;
 
     private FileUtil<Product> productFileUtil = new FileUtil<>();
@@ -80,7 +79,7 @@ public class ProductInterface extends javax.swing.JPanel {
         MainProductInterface = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
         InterfaceTitleLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addNewProductBtn = new javax.swing.JButton();
         typeProductFilterPanel = new javax.swing.JPanel();
         allProductField = new javax.swing.JButton();
         musicCdField = new javax.swing.JButton();
@@ -98,10 +97,10 @@ public class ProductInterface extends javax.swing.JPanel {
         InterfaceTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         InterfaceTitleLabel.setText("Products");
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\lib\\unknown\\binary\\image\\plus.png")); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        addNewProductBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\lib\\unknown\\binary\\image\\plus.png")); // NOI18N
+        addNewProductBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                addNewProductBtnMouseClicked(evt);
             }
         });
 
@@ -113,7 +112,7 @@ public class ProductInterface extends javax.swing.JPanel {
                 .addGap(15, 15, 15)
                 .addComponent(InterfaceTitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(addNewProductBtn)
                 .addContainerGap())
         );
         headerPanelLayout.setVerticalGroup(
@@ -122,7 +121,7 @@ public class ProductInterface extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(headerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(headerPanelLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(addNewProductBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(6, 6, 6))
                     .addComponent(InterfaceTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -221,11 +220,11 @@ public class ProductInterface extends javax.swing.JPanel {
         add(MainProductInterface);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void addNewProductBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewProductBtnMouseClicked
         // TODO add your handling code here:
         this.homePage.menuClicked(homePage.addProduct);
 
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_addNewProductBtnMouseClicked
 
     private void musicCdFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_musicCdFieldMouseClicked
         // TODO add your handling code here:
@@ -257,11 +256,11 @@ public class ProductInterface extends javax.swing.JPanel {
     private javax.swing.JLabel InterfaceTitleLabel;
     private javax.swing.JPanel MainProductInterface;
     private javax.swing.JPanel ProductListPanel;
+    private javax.swing.JButton addNewProductBtn;
     private javax.swing.JButton allProductField;
     private javax.swing.JButton bookField;
     private javax.swing.JButton filmCdField;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton musicCdField;
     private javax.swing.JLabel productLabel;
