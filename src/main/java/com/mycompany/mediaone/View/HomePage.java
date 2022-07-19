@@ -17,7 +17,7 @@ public class HomePage extends javax.swing.JFrame {
     public com.mycompany.mediaone.View.Product.ProductDetail productDetail = new ProductDetail(this);
     public com.mycompany.mediaone.View.Bill.BillInterface billInterface = new BillInterface(this);
     public com.mycompany.mediaone.View.Bill.BillBuyDetail addBillBuy = new BillBuyDetail(this, "add");
-//    public com.mycompany.mediaone.View.Bill.BillSoldDetail addBillSold = new BillSoldDetail(this, "add");
+    public com.mycompany.mediaone.View.Bill.BillSoldDetail addBillSold = new BillSoldDetail(this, "add");
 
     public HomePage() {
         initComponents();
@@ -28,7 +28,7 @@ public class HomePage extends javax.swing.JFrame {
         this.contentPanel.add(productDetail);
         this.contentPanel.add(billInterface);
         this.contentPanel.add(addBillBuy);
-//        this.contentPanel.add(addBillSold);
+        this.contentPanel.add(addBillSold);
     }
 
     @SuppressWarnings("unchecked")
@@ -310,7 +310,7 @@ public class HomePage extends javax.swing.JFrame {
         this.productDetail.setVisible(false);
         this.billInterface.setVisible(false);
         this.addBillBuy.setVisible(false);
-//        this.addBillSold.setVisible(false);
+        this.addBillSold.setVisible(false);
 
         panel.setVisible(true);
     }

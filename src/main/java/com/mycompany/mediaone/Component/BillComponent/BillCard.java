@@ -12,8 +12,13 @@ public class BillCard extends javax.swing.JPanel {
         bill = bill;
         homePage = homePage;
         initComponents();
-        totalAmountLabel.setText(bill.getTotal());
+        totalAmountLabel.setText("" + bill.getTotal());
     }
+
+    public BillCard() {
+        
+    }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

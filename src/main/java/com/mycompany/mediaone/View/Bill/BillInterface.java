@@ -7,29 +7,44 @@ import com.mycompany.mediaone.Model.BillModel.BillItem;
 import com.mycompany.mediaone.Model.Product;
 import com.mycompany.mediaone.Util.FileUtil;
 import com.mycompany.mediaone.View.HomePage;
+import com.mycompany.mediaone.View.Bill.BillSoldDetail;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BillInterface extends javax.swing.JPanel {
     
     private HomePage homePage;
-    public List<Bill> listBills = new ArrayList<>();
+    //public List<Bill> listBills = new ArrayList<>();
     private FileUtil<Bill> billFileUtil = new FileUtil<>();
-    public List<Bill> billList;
+    //public List<Bill> billList;
     
     public BillInterface(HomePage homePage) {
         initComponents();
         this.billListPanel.setLayout(new WrapLayout());
         this.homePage = homePage;
-        BillItem item1 = new BillItem("001", "New Book", 4, 20);
-        List<BillItem> items = new ArrayList<>();
-        items.add(item1);
-        Bill billExample = new Bill();
-        billExample.setId("001");
-        billExample.setItems(items);
-        billExample.setType("sold");
-        billExample.setCreatedAt(new Date("01/01/2020"));
+        try {
+            
+
+           
+
+            for (Product productListItem : productListItems) {
+                this.ProductListPanel.add(new ProductCard(productListItem, this.homePage));
+            }
+        } catch (ClassNotFoundException e) {
+            System.out.println("Class object not found");
+        } catch (IOException e) {
+            System.out.println("Error initializing stream");
+        }
+//        BillItem item1 = new BillItem("001", "New Book", 4, 20);
+//        List<BillItem> items = new ArrayList<>();
+//        items.add(item1);
+        //Bill billExample = new Bill();
+//        billExample.setId("001");
+//        billExample.setItems(items);
+//        billExample.setType("sold");
+        //billExample.setCreatedAt(new Date("01/01/2020"));
     }
     
     public void addNewBillToListPanel(Bill bill) {
@@ -75,6 +90,11 @@ public class BillInterface extends javax.swing.JPanel {
         addSoldBillBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addSoldBillBtnMouseClicked(evt);
+            }
+        });
+        addSoldBillBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSoldBillBtnActionPerformed(evt);
             }
         });
 
@@ -139,14 +159,16 @@ public class BillInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_filterBillBtnActionPerformed
 
     private void addSoldBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addSoldBillBtnMouseClicked
-        // TODO add your handling code here:
-//        this.homePage.menuClicked(this.homePage.addBillSold);
+        this.homePage.menuClicked(this.homePage.addBillSold);
     }//GEN-LAST:event_addSoldBillBtnMouseClicked
 
     private void addBuyBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBuyBillBtnMouseClicked
-        // TODO add your handling code here:
         this.homePage.menuClicked(this.homePage.addBillBuy);
     }//GEN-LAST:event_addBuyBillBtnMouseClicked
+
+    private void addSoldBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSoldBillBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addSoldBillBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

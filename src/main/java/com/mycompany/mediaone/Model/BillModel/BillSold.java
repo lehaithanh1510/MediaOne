@@ -1,5 +1,7 @@
 package com.mycompany.mediaone.Model.BillModel;
 
+import java.awt.ItemSelectable;
+
 public class BillSold extends Bill {
 
     private Customer customer;
@@ -11,4 +13,7 @@ public class BillSold extends Bill {
     public Customer getCustomer() {
         return customer;
     }
+
+    
+    
 }

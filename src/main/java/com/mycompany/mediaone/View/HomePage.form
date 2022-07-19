@@ -101,11 +101,6 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="homeIcon">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\lib\unknown\binary\image\home_1.png"/>
-                    </Property>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="60" y="0" width="40" height="50"/>
@@ -151,11 +146,6 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="productIcon">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\lib\unknown\binary\image\packaging.png"/>
-                    </Property>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="60" y="0" width="40" height="50"/>
@@ -201,11 +191,6 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="billIcon">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\lib\unknown\binary\image\order.png"/>
-                    </Property>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="60" y="0" width="40" height="50"/>
@@ -251,11 +236,6 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="profitIcon">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\lib\unknown\binary\image\financial-profit.png"/>
-                    </Property>
-                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="60" y="0" width="40" height="50"/>
@@ -287,9 +267,6 @@
             <Component class="javax.swing.JLabel" name="logoIcon">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\lib\unknown\binary\image\bookstore.png"/>
-                </Property>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableLocal" type="java.lang.Boolean" value="true"/>

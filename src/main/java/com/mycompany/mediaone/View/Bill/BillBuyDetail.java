@@ -420,14 +420,7 @@ public class BillBuyDetail extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private double calculateTotalPriceOfBill() {
-        double totalPrice = 0;
-        for (int i = 0; i < listItem.size(); i++) {
-            totalPrice += listItem.get(i).getAmount();
-        }
-        System.out.println(totalPrice);
-        return totalPrice;
-    }
+    
 
     private void createBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBillBtnActionPerformed
 
@@ -496,7 +489,7 @@ public class BillBuyDetail extends javax.swing.JPanel {
         BillBuy newBuyBill = new BillBuy();
         newBuyBill.setId(UUID.randomUUID().toString());
         newBuyBill.setItems(listItem);
-        newBuyBill.setTotal(calculateTotalPriceOfBill());
+        //newBuyBill.setTotal();
         this.homePage.billInterface.listBills.add(newBuyBill);
 
 //        try {

@@ -1,13 +1,14 @@
 package com.mycompany.mediaone.Model.BillModel;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-public class Bill {
+abstract public class Bill {
 
     private String id;
+    private String name;
     private double total; //grand total
-    private Date createdAt;
+    private LocalDate createdAt;
     private List<BillItem> items;
     private String type;
 
@@ -17,12 +18,13 @@ public class Bill {
     public void setId(String id) {
         this.id = id;
     }
-
-    public void setTotal(double total) {
-        this.total = total;
+    
+    public void setName(String name){
+        this.name = name;
     }
 
-    public void setCreatedAt(Date createdAt) {
+
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -42,7 +44,7 @@ public class Bill {
         return total;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
@@ -52,5 +54,18 @@ public class Bill {
 
     public String getType() {
         return type;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    public double caculateTotal(){
+        double totalPrice = 0;
+        for (int i = 0; i < this.getItems().size(); i++) {
+            totalPrice += this.getItems().get(i).getAmount();
+        }
+        System.out.println(totalPrice);
+        this.total = totalPrice;
+        return total;
     }
 }

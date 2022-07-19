@@ -19,6 +19,29 @@ public class BillItem {
         this.amount = quantity * unitPrice;
     }
 
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+    
+    
+
     public int getQuantity() {
         return quantity;
     }
@@ -38,4 +61,6 @@ public class BillItem {
     public double getAmount() {
         return amount;
     }
+
+    
 }
