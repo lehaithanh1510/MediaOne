@@ -15,6 +15,10 @@ abstract public class Bill {
     public Bill() {
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -23,7 +27,10 @@ abstract public class Bill {
         this.name = name;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
@@ -34,6 +41,10 @@ abstract public class Bill {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getId() {
@@ -55,6 +66,7 @@ abstract public class Bill {
     public String getType() {
         return type;
     }
+<<<<<<< HEAD
     
     public String getName(){
         return name;
@@ -67,5 +79,14 @@ abstract public class Bill {
         System.out.println(totalPrice);
         this.total = totalPrice;
         return total;
+=======
+
+    public int getTotalItemQuantityInBill() {
+        double totalQuantityItem = 0;
+        for (int i = 0; i < items.size(); i++) {
+            totalQuantityItem += items.get(i).getQuantity();
+        }
+        return (int) totalQuantityItem;
+>>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
     }
 }

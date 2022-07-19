@@ -17,8 +17,13 @@ public class HomePage extends javax.swing.JFrame {
     public com.mycompany.mediaone.View.Product.ProductDetail productDetail = new ProductDetail(this);
     public com.mycompany.mediaone.View.Bill.BillInterface billInterface = new BillInterface(this);
     public com.mycompany.mediaone.View.Bill.BillBuyDetail addBillBuy = new BillBuyDetail(this, "add");
+<<<<<<< HEAD
     public com.mycompany.mediaone.View.Bill.BillSoldDetail addBillSold = new BillSoldDetail(this, "add");
+=======
+    public com.mycompany.mediaone.View.Bill.BillBuyDetail editBillBuy = new BillBuyDetail(this, "edit");
+>>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
 
+//    public com.mycompany.mediaone.View.Bill.BillSoldDetail addBillSold = new BillSoldDetail(this, "add");
     public HomePage() {
         initComponents();
 
@@ -28,7 +33,12 @@ public class HomePage extends javax.swing.JFrame {
         this.contentPanel.add(productDetail);
         this.contentPanel.add(billInterface);
         this.contentPanel.add(addBillBuy);
+<<<<<<< HEAD
         this.contentPanel.add(addBillSold);
+=======
+        this.contentPanel.add(editBillBuy);
+        //        this.contentPanel.add(addBillSold);
+>>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
     }
 
     @SuppressWarnings("unchecked")
@@ -310,7 +320,12 @@ public class HomePage extends javax.swing.JFrame {
         this.productDetail.setVisible(false);
         this.billInterface.setVisible(false);
         this.addBillBuy.setVisible(false);
+<<<<<<< HEAD
         this.addBillSold.setVisible(false);
+=======
+        this.editBillBuy.setVisible(false);
+//        this.addBillSold.setVisible(false);
+>>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
 
         panel.setVisible(true);
     }

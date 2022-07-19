@@ -8,12 +8,9 @@ public class BillItem {
     private String id;
     private double amount;
 
-    public BillItem() {
-    }
-
     public BillItem(String id, String name, int quantity, double unitPrice) {
-        this.name = name;
         this.id = id;
+        this.name = name;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
         this.amount = quantity * unitPrice;

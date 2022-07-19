@@ -107,6 +107,11 @@ public class ProductCard extends javax.swing.JPanel {
                 editBtnMouseClicked(evt);
             }
         });
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
@@ -154,6 +159,10 @@ public class ProductCard extends javax.swing.JPanel {
         System.out.println(this.homePage);
         this.homePage.productDetail.setProductInfo(product);
         this.homePage.menuClicked(homePage.productDetail);    }//GEN-LAST:event_editBtnMouseClicked
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
