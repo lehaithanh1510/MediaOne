@@ -16,6 +16,9 @@ public class BillItem {
         this.amount = quantity * unitPrice;
     }
 
+    public BillItem() {
+    }
+
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;

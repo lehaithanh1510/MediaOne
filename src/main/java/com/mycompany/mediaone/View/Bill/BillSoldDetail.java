@@ -25,13 +25,9 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private HomePage homePage;
     private String typeInterface;
     private List<BillItem> listItems = new ArrayList<>();
-<<<<<<< HEAD
     private List<Bill> listBills = new ArrayList<>();
     private DefaultTableModel model;
     private String[] columHeaders = new String[]{"ID", "Name", "Quantity", "Unit Price"};
-=======
-    private String[] columHeaders = new String[]{"ID", "Name", "Quantity", "Unit Price", "Amount"};
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
 
     public BillSoldDetail(HomePage homePage, String typeInterface) {
         initComponents();
@@ -40,57 +36,22 @@ public class BillSoldDetail extends javax.swing.JPanel {
         initTable();
     }
 
-<<<<<<< HEAD
     private void initData() {
         listItems.add(new BillItem("P01", "Titanic", 3, 100));
         listItems.add(new BillItem("P02", "Mozart", 5, 200));
-        
+
     }
 
-=======
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
     private void initTable() {
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columHeaders);
 
-<<<<<<< HEAD
         listItems.forEach(item -> {
             model.addRow(new Object[]{item.getId(), item.getName(),
                 item.getQuantity(), item.getUnitPrice()});
         });
         productTable.setModel(model);
-=======
-        productTable.setColumnIdentifiers(columHeaders);
 
-        listItems.forEach(item
-                -> {
-            productTable.addRow(new Object[]{item.getId(), item.getName(),
-                item.getQuantity(), item.getUnitPrice(), item.getAmount()});
-        }
-        );
-//        tblProducts.setModel(model);
-    }
-
-    private void updateTotalAmount() {
-        try {
-            float VAT = 0.02f;
-            int sum = 0;
-//            for (int i = 0; i < listIn.size(); i++) {
-//                BillItem item = listIn.get(i);
-//                sum += item.getAmount();
-//            }
-            txtTotalAmount.setText("" + sum);
-            txtVATRate.setText("" + VAT);
-            txtVATAmount.setText("" + (VAT * sum));
-            txtGrandTotal.setText("" + (Float.parseFloat(txtTotalAmount.getText())
-                    + Float.parseFloat(txtVATAmount.getText())));
-
-            StringBuilder sb = new StringBuilder();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
     }
 
 //    private void updateTotalAmount() {
@@ -418,6 +379,11 @@ public class BillSoldDetail extends javax.swing.JPanel {
                 btnCreateBillMouseClicked(evt);
             }
         });
+        btnCreateBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateBillActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -619,14 +585,13 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         try {
             ProductInterface productItem = new ProductInterface(homePage);
-            for(int i = 0; i < productItem.productListItems.size(); i++){
+            for (int i = 0; i < productItem.productListItems.size(); i++) {
                 Product product = productItem.productListItems.get(i);
-                if(txtName.getText().equals(product.getName())){
+                if (txtName.getText().equals(product.getName())) {
                     txtID.setText(product.getId());
 //                    txtQuantity.setText("" + billItem1.getQuantity());
                     txtUnitPrice.setText("" + product.getSellPrice());
                 }
-                
 
             }
         } catch (Exception e) {
@@ -634,36 +599,42 @@ public class BillSoldDetail extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        System.out.println("hello");
+
+        this.homePage.menuClicked(this.homePage.billInterface);
+
+    }//GEN-LAST:event_btnBackMouseClicked
+
     private void btnCreateBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateBillMouseClicked
-//        BillSold newBill = new BillSold();
-//        newBill.setId(txtID.getText());
-//        newBill.setName(txtName.getName());
-//        newBill.setCreatedAt(LocalDate.now());
-//        newBill.setItems(listItems);
+        System.out.println("hello");
+        BillSold soldBill = new BillSold() ;
+        soldBill.setId((UUID.randomUUID().toString()));
+        soldBill.setName("abc");
+        soldBill.setCreatedAt(LocalDate.now());
+        soldBill.setType("sold");
+        soldBill.setItems(listItems);
 
-          Bill bill = new Bill() {};
-          bill.setId((UUID.randomUUID().toString()));
-          bill.setName(txtName.getText());
-          bill.setCreatedAt(LocalDate.now());
-          bill.setType("sold");
-
-
-          for (int i = 0; i < listBills.size(); i++) {
-                listBills.set(i, bill);
-          }
-          listBills.add(bill);
-          
-          this.homePage.productInterface.(new Product(productId, productName, productType, productNumInStock, productInputPrice, productSellPrice, releaseDate, productCategory, productAuthorDirectorMusician, productContributorActorSinger));
-          this.homePage.menuClicked(homePage.productInterface);
-          this.resetAllTextAfterCreateProduct();
-
-          this.homePage.menuClicked(this.homePage.billInterface);
+        this.homePage.billInterface.listBills.add(soldBill);
+        System.out.println(this.homePage.billInterface.listBills.size());
+        this.homePage.billInterface.addNewBillToListPanel(soldBill);
+        this.homePage.menuClicked(this.homePage.billInterface);
     }//GEN-LAST:event_btnCreateBillMouseClicked
 
-    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+    private void btnCreateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateBillActionPerformed
+        System.out.println("hello");
+        BillSold soldBill = new BillSold() ;
+        soldBill.setId((UUID.randomUUID().toString()));
+        soldBill.setName("abc");
+        soldBill.setCreatedAt(LocalDate.now());
+        soldBill.setType("sold");
+        soldBill.setItems(listItems);
+
+        this.homePage.billInterface.listBills.add(soldBill);
+        System.out.println(this.homePage.billInterface.listBills.size());
+        this.homePage.billInterface.addNewBillToListPanel(soldBill);
         this.homePage.menuClicked(this.homePage.billInterface);
-        
-    }//GEN-LAST:event_btnBackMouseClicked
+    }//GEN-LAST:event_btnCreateBillActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -709,5 +680,4 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private javax.swing.JLabel unitPriceItemLabel;
     // End of variables declaration//GEN-END:variables
 
-    
 }

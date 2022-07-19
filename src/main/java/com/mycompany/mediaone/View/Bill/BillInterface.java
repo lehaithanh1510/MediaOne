@@ -5,11 +5,8 @@ import com.mycompany.mediaone.Component.BillComponent.BillCard;
 import com.mycompany.mediaone.Model.BillModel.Bill;
 import com.mycompany.mediaone.Util.FileUtil;
 import com.mycompany.mediaone.View.HomePage;
-<<<<<<< HEAD
 import com.mycompany.mediaone.View.Bill.BillSoldDetail;
-=======
 import java.io.IOException;
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,27 +15,14 @@ import java.util.List;
 public class BillInterface extends javax.swing.JPanel {
 
     private HomePage homePage;
-    //public List<Bill> listBills = new ArrayList<>();
+    public List<Bill> listBills = new ArrayList<>();
     private FileUtil<Bill> billFileUtil = new FileUtil<>();
-<<<<<<< HEAD
-    //public List<Bill> billList;
-    
-=======
 
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
     public BillInterface(HomePage homePage) {
         initComponents();
         this.billListPanel.setLayout(new WrapLayout());
         this.homePage = homePage;
-<<<<<<< HEAD
-        try {
-            
 
-           
-
-            for (Product productListItem : productListItems) {
-                this.ProductListPanel.add(new ProductCard(productListItem, this.homePage));
-=======
 
         try {
             this.listBills = this.billFileUtil.readFile("bill");
@@ -47,24 +31,13 @@ public class BillInterface extends javax.swing.JPanel {
 
             for (Bill bill : listBills) {
                 this.billListPanel.add(new BillCard(bill, this.homePage));
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
             }
         } catch (ClassNotFoundException e) {
             System.out.println("Class object not found");
         } catch (IOException e) {
             System.out.println("Error initializing stream");
         }
-<<<<<<< HEAD
-//        BillItem item1 = new BillItem("001", "New Book", 4, 20);
-//        List<BillItem> items = new ArrayList<>();
-//        items.add(item1);
-        //Bill billExample = new Bill();
-//        billExample.setId("001");
-//        billExample.setItems(items);
-//        billExample.setType("sold");
-        //billExample.setCreatedAt(new Date("01/01/2020"));
-=======
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
+
     }
 
     public void addNewBillToListPanel(Bill bill) {

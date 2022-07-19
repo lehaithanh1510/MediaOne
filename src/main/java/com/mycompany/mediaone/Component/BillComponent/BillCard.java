@@ -20,16 +20,6 @@ public class BillCard extends javax.swing.JPanel {
         billInfo = bill;
         this.homePage = homePage;
         initComponents();
-<<<<<<< HEAD
-        totalAmountLabel.setText("" + bill.getTotal());
-    }
-
-    public BillCard() {
-        
-    }
-
-    
-=======
         totalAmountLabel.setText(String.valueOf(bill.getTotal()));
         itemQuantityLabel.setText(String.valueOf(bill.getTotalItemQuantityInBill()));
         billTypeText.setText("sold".equals(bill.getType()) ? "Sold" : "Buy");
@@ -40,7 +30,6 @@ public class BillCard extends javax.swing.JPanel {
         }
     }
 
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

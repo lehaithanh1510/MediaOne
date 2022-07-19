@@ -12,13 +12,8 @@ import java.util.List;
 
 public class FileUtil<T> {
 
-<<<<<<< HEAD
-    private static final String productFilePath = "E:\\Mediaone\\src\\main\\java\\com\\mycompany\\DataFile\\Product.txt";
-    private static final String orderFilePath = "Product.txt";
-=======
     private static final String productFilePath = "C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\src\\main\\java\\com\\mycompany\\DataFile\\Product.txt";
     private static final String billBuyFilePath = "C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\src\\main\\java\\com\\mycompany\\DataFile\\BillBuy.txt";
->>>>>>> 7823851f68ae841016ef7aa837f30ba12266b5fc
 
     public FileUtil() {
     }
