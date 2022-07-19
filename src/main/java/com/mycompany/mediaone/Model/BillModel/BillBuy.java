@@ -4,4 +4,5 @@ public class BillBuy extends Bill {
 
     public BillBuy() {
     }
+    
 }

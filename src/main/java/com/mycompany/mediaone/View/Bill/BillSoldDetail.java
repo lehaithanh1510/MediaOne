@@ -14,26 +14,12 @@ public class BillSoldDetail extends javax.swing.JPanel {
 
     private HomePage homePage;
     private String typeInterface;
-    private List<BillItem> listIn = new ArrayList<>();
-    private List<BillItem> listOut = new ArrayList<>();
-    private List<Bill> listBills = new ArrayList<>();
+    private List<BillItem> listItems = new ArrayList<>();
     private String[] columHeaders = new String[]{"ID", "Name", "Quantity", "Unit Price", "Amount"};
 
     public BillSoldDetail(HomePage homePage, String typeInterface) {
         initComponents();
         this.homePage = homePage;
-    }
-
-    private void initData() {
-//        listIn.add(new BillItem("P01", "Titanic", 3, 100, 3 * 100));
-//        listIn.add(new BillItem("P02", "Mozart", 5, 200, 5 * 200));
-//
-//        listOut.add(new BillItem("P_01", "1x Spider-Man: No Way Home (2021)", 1, 400, 1 * 400));
-
-//        listCustomers.add(new Customer("Nguyen Van A", "0899999999", "Dai Co Viet, Hai Ba Trung, Ha Noi"));
-//        listCustomers.add(new Customer("Nguyen Thi B", "0888888888", "Ha Noi"));
-//        listBills.add(new Bill("#B01", 1326, "22:22:07 12/6/2022", "Nguyen Van A", "3x Titanic\n5x Mozart", "Sell"));
-//        listBills.add(new Bill("#B02", 500, "21:20:07 12/6/2022", "Nguyen Thi B", "1x Spider-Man: No Way Home (2021)", "Input"));
     }
 
     private void initTable() {
@@ -43,7 +29,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
 
         productTable.setColumnIdentifiers(columHeaders);
 
-        listIn.forEach(item
+        listItems.forEach(item
                 -> {
             productTable.addRow(new Object[]{item.getId(), item.getName(),
                 item.getQuantity(), item.getUnitPrice(), item.getAmount()});
