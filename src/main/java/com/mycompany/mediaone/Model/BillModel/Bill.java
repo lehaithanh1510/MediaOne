@@ -15,16 +15,12 @@ abstract public class Bill {
     public Bill() {
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
-
-    public void setTotal(double total) {
-        this.total = total;
+    
+    public void setName(String name){
+        this.name = name;
     }
 
     public void setCreatedAt(LocalDate createdAt) {
@@ -37,6 +33,10 @@ abstract public class Bill {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public String getName() {

@@ -291,22 +291,12 @@
           </Layout>
           <SubComponents>
             <Component class="javax.swing.JButton" name="deleteBillCardBtn">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\lib\unknown\binary\image\delete.png"/>
-                </Property>
-              </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="deleteBillCardBtnMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteBillCardBtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="editBillCardBtn">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\lib\unknown\binary\image\pencil.png"/>
-                </Property>
-              </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editBillCardBtnMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editBillCardBtnActionPerformed"/>
