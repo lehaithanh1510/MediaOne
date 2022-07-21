@@ -1,20 +1,12 @@
 package com.mycompany.mediaone.View.Profit;
 
 import com.mycompany.mediaone.Model.BillModel.Bill;
-import com.mycompany.mediaone.Model.BillModel.BillBuy;
 import com.mycompany.mediaone.Model.BillModel.BillItem;
-import com.mycompany.mediaone.Model.BillModel.BillSold;
 import com.mycompany.mediaone.Model.BillModel.Customer;
 import com.mycompany.mediaone.View.HomePage;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.ArrayList;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
-import javax.swing.JOptionPane;
+import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 
 public class ProfitInterface extends javax.swing.JPanel {
@@ -25,20 +17,18 @@ public class ProfitInterface extends javax.swing.JPanel {
     private List<BillItem> listItems = new ArrayList<>();
     private DefaultTableModel model;
     private final HomePage homePage;
-    private String[] costcolumHeaders = new String[]{"Number", "ID", "Time", "Price"};
-    private String[] salecolumHeaders = new String[]{"Number", "ID", "Time", "Price"};
+    private String[] costcolumHeaders = new String[]{"Number", "ID", "Name", "Time", "Price"};
+    private String[] salecolumHeaders = new String[]{"Number", "ID","Name", "Time", "Price"};
     private Object total;
 
     public ProfitInterface(HomePage homePage) {
         initComponents();
         this.homePage = homePage;
-        initData();
-        initTable();
     }
 
-    public void loadTableBill() { //load dữ liệu đầu vào
-        List<Bill> loadTableBill = new ArrayList<>();
-    }
+//    public void loadTableBill() { //load dữ liệu đầu vào
+//        List<Bill> loadTableBill = new ArrayList<>();
+//    }
 
     public void FomatCalendar() {
 
@@ -48,36 +38,7 @@ public class ProfitInterface extends javax.swing.JPanel {
         search.setEnabled(false);
         profit.setEnabled(false);
     }
-
-    private void initData() {
-        listItems.add(new BillItem("02", "Slayer", 6, 200));
-        listItems.add(new BillItem("P01", "Utaka", 1, 400));
-        listItems.add(new BillItem("P02", "Santa", 3, 400));
-        customer = new Customer("Tran Xuan Loc", "0899999999", "Dai Co Viet, Hai Ba Trung, Ha Noi");
-
-        BillSold soldBill = new BillSold();
-        soldBill.setId((UUID.randomUUID().toString()));
-        soldBill.setName("abc");
-//        soldBill.setCreatedAt(Date.now());
-        soldBill.setType("sold");
-        soldBill.setItems(listItems);
-        soldBill.setCustomer(customer);
-
-        listSoldBill.add(soldBill);
-        listSoldBill.add(soldBill);
-
-        BillBuy buyBill = new BillBuy();
-        buyBill.setId((UUID.randomUUID().toString()));
-        buyBill.setName("abc");
-//        buyBill.setCreatedAt(LocalDate.now());
-        buyBill.setType("buy");
-        buyBill.setItems(listItems);
-        listBuyBill.add(buyBill);
-        listBuyBill.add(buyBill);
-        totalCostLabel.setText(Double.toString(this.calculateTotalCost(listBuyBill)));
-        totalSaleLabel.setText(Double.toString(this.calculateTotalSale(listSoldBill)));
-    }
-
+    
     private double calculateTotalCost(List<Bill> listBillCost) {
         double sum = 0;
 
@@ -102,24 +63,6 @@ public class ProfitInterface extends javax.swing.JPanel {
         sum = calculateTotalSale(this.listSoldBill) - calculateTotalCost(this.listBuyBill);
         return sum;
 
-    }
-
-    private void initTable() {
-        model = new DefaultTableModel();
-        model.setColumnIdentifiers(costcolumHeaders);
-
-        listBuyBill.forEach(item -> {
-            model.addRow(new Object[]{listBuyBill.indexOf(item), item.getId(),
-                item.getCreatedAt(), item.getTotal()});
-        });
-        CostsTable.setModel(model);
-        model = new DefaultTableModel();
-        model.setColumnIdentifiers(salecolumHeaders);
-        listSoldBill.forEach(item -> {
-            model.addRow(new Object[]{listSoldBill.indexOf(item), item.getId(),
-                item.getCreatedAt(), item.getTotal()});
-        });
-        SalesTable.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
@@ -153,6 +96,8 @@ public class ProfitInterface extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnloadBill = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         search.setText("Search");
         search.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -674,7 +619,42 @@ public class ProfitInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_btnloadBillActionPerformed
 
     private void btnloadBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloadBillMouseClicked
+        listBuyBill = this.homePage.billInterface.listBills.stream()
+                    .filter(bill -> "buy".equals(bill.getType()))
+                    .collect(Collectors.toList());
+        
+        
+        listSoldBill = this.homePage.billInterface.listBills.stream()
+                    .filter(bill -> "sold".equals(bill.getType()))
+                    .collect(Collectors.toList());
+        
+        
+        model = new DefaultTableModel();
 
+        model.setColumnIdentifiers(costcolumHeaders);
+
+        listBuyBill.forEach(item
+                -> {
+            model.addRow(new Object[]{model.getRowCount(), item.getId(), item.getName(),
+               item.getCreatedAt(), item.getTotal() });
+        }
+        );
+        CostsTable.setModel(model);
+        
+        model = new DefaultTableModel();
+        
+        model.setColumnIdentifiers(salecolumHeaders);
+
+        listSoldBill.forEach(item
+                -> {
+            model.addRow(new Object[]{model.getRowCount(), item.getId(), item.getName(),
+               item.getCreatedAt(), item.getTotal() });
+        }
+        );
+        SalesTable.setModel(model);
+        totalCostLabel.setText(Double.toString(this.calculateTotalCost(listBuyBill)));
+        totalSaleLabel.setText(Double.toString(this.calculateTotalSale(listSoldBill)));
+    
     }//GEN-LAST:event_btnloadBillMouseClicked
 
     private void totalProfitFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalProfitFocusLost

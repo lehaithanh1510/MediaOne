@@ -659,7 +659,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
     }//GEN-LAST:event_createBillBtnMouseClicked
 
     private void createBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBillBtnActionPerformed
-//        System.out.println("hello");
+
 //        BillSold soldBill = new BillSold() ;
 //        soldBill.setId((UUID.randomUUID().toString()));
 //        soldBill.setName("abc");
