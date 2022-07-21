@@ -6,6 +6,7 @@ import com.mycompany.mediaone.View.Bill.BillSoldDetail;
 import com.mycompany.mediaone.View.Product.AddProduct;
 import com.mycompany.mediaone.View.Product.ProductInterface;
 import com.mycompany.mediaone.View.Product.ProductDetail;
+import com.mycompany.mediaone.View.Profit.ProfitInterface;
 import java.awt.Color;
 import javax.swing.JPanel;
 
@@ -19,6 +20,7 @@ public class HomePage extends javax.swing.JFrame {
     public com.mycompany.mediaone.View.Bill.BillBuyDetail addBillBuy = new BillBuyDetail(this, "add");
     public com.mycompany.mediaone.View.Bill.BillSoldDetail addBillSold = new BillSoldDetail(this, "add");
     public com.mycompany.mediaone.View.Bill.BillBuyDetail editBillBuy = new BillBuyDetail(this, "edit");
+    public com.mycompany.mediaone.View.Profit.ProfitInterface profitInterface = new ProfitInterface(this);
     public com.mycompany.mediaone.View.Bill.BillSoldDetail editBillSold = new BillSoldDetail(this, "edit");
     public HomePage() {
         initComponents();
@@ -27,6 +29,7 @@ public class HomePage extends javax.swing.JFrame {
         this.contentPanel.add(productInterface);
         this.contentPanel.add(addProduct);
         this.contentPanel.add(productDetail);
+        this.contentPanel.add(profitInterface);
         this.contentPanel.add(billInterface);
         this.contentPanel.add(addBillBuy);
         this.contentPanel.add(addBillSold);
@@ -144,6 +147,9 @@ public class HomePage extends javax.swing.JFrame {
 
         profitChoosePanel.setBackground(new java.awt.Color(0, 153, 153));
         profitChoosePanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profitChoosePanelMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 profitChoosePanelMouseEntered(evt);
             }
@@ -262,11 +268,16 @@ public class HomePage extends javax.swing.JFrame {
 
     private void profitChoosePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profitChoosePanelMousePressed
         profitChoosePanel.setBackground(new Color(60, 179, 113));
+        menuClicked(this.profitInterface);
     }//GEN-LAST:event_profitChoosePanelMousePressed
 
     private void profitChoosePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profitChoosePanelMouseEntered
         profitChoosePanel.setBackground(new Color(112, 128, 144));
     }//GEN-LAST:event_profitChoosePanelMouseEntered
+
+    private void profitChoosePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profitChoosePanelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profitChoosePanelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -311,6 +322,7 @@ public class HomePage extends javax.swing.JFrame {
         this.productInterface.setVisible((false));
         this.addProduct.setVisible((false));
         this.productDetail.setVisible(false);
+        this.profitInterface.setVisible(false);
         this.billInterface.setVisible(false);
         this.addBillBuy.setVisible(false);
         this.addBillSold.setVisible(false);

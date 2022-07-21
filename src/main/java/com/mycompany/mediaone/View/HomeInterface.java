@@ -4,6 +4,9 @@
  */
 package com.mycompany.mediaone.View;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author MY LAPTOP
@@ -15,6 +18,8 @@ public class HomeInterface extends javax.swing.JPanel {
      */
     public HomeInterface() {
         initComponents();
+        Image imageInterface = (new ImageIcon("C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\lib\\unknown\\binary\\image\\homeInterface.png")).getImage().getScaledInstance(760, 600, java.awt.Image.SCALE_SMOOTH);
+        mainInterfaceImage.setIcon(new ImageIcon(imageInterface)); // NOI18N
     }
 
     /**
@@ -27,29 +32,22 @@ public class HomeInterface extends javax.swing.JPanel {
     private void initComponents() {
 
         mainHomeInterface = new javax.swing.JPanel();
-        welcomeLabel = new javax.swing.JLabel();
+        mainInterfaceImage = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(677, 543));
 
-        welcomeLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        welcomeLabel.setText("WELCOME TO MEDIA ONE MANAGEMENT SYSTEM");
+        mainInterfaceImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainInterfaceImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\lib\\unknown\\binary\\image\\library-g92c93c34a_640.png")); // NOI18N
 
         javax.swing.GroupLayout mainHomeInterfaceLayout = new javax.swing.GroupLayout(mainHomeInterface);
         mainHomeInterface.setLayout(mainHomeInterfaceLayout);
         mainHomeInterfaceLayout.setHorizontalGroup(
             mainHomeInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainHomeInterfaceLayout.createSequentialGroup()
-                .addContainerGap(106, Short.MAX_VALUE)
-                .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+            .addComponent(mainInterfaceImage, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
         );
         mainHomeInterfaceLayout.setVerticalGroup(
             mainHomeInterfaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainHomeInterfaceLayout.createSequentialGroup()
-                .addGap(154, 154, 154)
-                .addComponent(welcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
+            .addComponent(mainInterfaceImage, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -67,6 +65,6 @@ public class HomeInterface extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel mainHomeInterface;
-    private javax.swing.JLabel welcomeLabel;
+    private javax.swing.JLabel mainInterfaceImage;
     // End of variables declaration//GEN-END:variables
 }
