@@ -1,6 +1,7 @@
 package com.mycompany.mediaone.View.Product;
 
 import com.mycompany.mediaone.Model.Product;
+import com.mycompany.SharedType.EProductType;
 import com.mycompany.mediaone.Util.ProductUtil;
 import com.mycompany.SharedType.WrapLayout;
 import com.mycompany.mediaone.Component.ProductComponent.ProductCard;
@@ -96,10 +97,14 @@ public class ProductInterface extends javax.swing.JPanel {
         InterfaceTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         InterfaceTitleLabel.setText("Products");
 
-        addNewProductBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\MY LAPTOP\\OneDrive\\Documents\\NetBeansProjects\\MediaOne\\lib\\unknown\\binary\\image\\plus.png")); // NOI18N
         addNewProductBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addNewProductBtnMouseClicked(evt);
+            }
+        });
+        addNewProductBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addNewProductBtnActionPerformed(evt);
             }
         });
 
@@ -249,6 +254,10 @@ public class ProductInterface extends javax.swing.JPanel {
         filterProductListByType("All Product");
 
     }//GEN-LAST:event_allProductFieldMouseClicked
+
+    private void addNewProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewProductBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addNewProductBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

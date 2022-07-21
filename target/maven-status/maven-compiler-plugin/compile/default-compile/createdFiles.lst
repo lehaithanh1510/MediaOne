@@ -10,14 +10,17 @@ com\mycompany\mediaone\View\Product\ProductDetail$2.class
 com\mycompany\mediaone\View\Bill\BillBuyDetail$10.class
 com\mycompany\mediaone\View\Bill\BillBuyDetail.class
 com\mycompany\mediaone\View\HomePage.class
+com\mycompany\mediaone\View\Bill\BillSoldDetail$9.class
 com\mycompany\mediaone\View\HomePage$3.class
 com\mycompany\mediaone\View\Bill\BillBuyDetail$8.class
 com\mycompany\mediaone\Util\ProductUtil.class
 com\mycompany\mediaone\View\Product\AddProduct$3.class
 com\mycompany\mediaone\View\Bill\BillInterface$1.class
+com\mycompany\mediaone\View\Bill\BillInterface$4.class
 com\mycompany\SharedType\EProductType.class
 com\mycompany\mediaone\Component\BillComponent\BillCard.class
 com\mycompany\mediaone\View\Product\ProductDetail$1.class
+com\mycompany\mediaone\View\Bill\BillSoldDetail$7.class
 com\mycompany\mediaone\View\Product\ProductInterface$2.class
 com\mycompany\mediaone\View\Bill\BillBuyDetail$1.class
 com\mycompany\mediaone\Model\BillModel\Customer.class
@@ -50,6 +53,7 @@ com\mycompany\mediaone\Component\BillComponent\BillCard$4.class
 com\mycompany\mediaone\View\Bill\BillSoldDetail.class
 com\mycompany\mediaone\Model\Product.class
 com\mycompany\mediaone\View\Product\AddProduct.class
+com\mycompany\mediaone\View\Product\ProductInterface$7.class
 com\mycompany\mediaone\Component\ProductComponent\ProductCard.class
 com\mycompany\mediaone\Component\ProductComponent\ProductCard$2.class
 com\mycompany\mediaone\View\Bill\BillBuyDetail$6.class
@@ -67,4 +71,5 @@ com\mycompany\mediaone\View\Bill\BillInterface$2.class
 com\mycompany\mediaone\Model\BillModel\BillItem.class
 com\mycompany\mediaone\View\HomeInterface.class
 com\mycompany\mediaone\Component\BillComponent\BillItemCard.class
+com\mycompany\mediaone\View\Bill\BillSoldDetail$8.class
 com\mycompany\mediaone\View\HomePage$2.class

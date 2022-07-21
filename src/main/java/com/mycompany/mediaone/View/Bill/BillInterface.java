@@ -5,39 +5,45 @@ import com.mycompany.mediaone.Component.BillComponent.BillCard;
 import com.mycompany.mediaone.Model.BillModel.Bill;
 import com.mycompany.mediaone.Util.FileUtil;
 import com.mycompany.mediaone.View.HomePage;
+import com.mycompany.mediaone.View.Bill.BillSoldDetail;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JButton;
 
 public class BillInterface extends javax.swing.JPanel {
 
     private HomePage homePage;
     public List<Bill> listBills = new ArrayList<>();
-    private FileUtil<Bill> billFileUtil = new FileUtil<>();
+    //private FileUtil<Bill> billFileUtil = new FileUtil<>();
 
     public BillInterface(HomePage homePage) {
         initComponents();
         this.billListPanel.setLayout(new WrapLayout());
         this.homePage = homePage;
 
-        try {
-            this.listBills = this.billFileUtil.readFile("bill");
 
-            System.out.println(this.billFileUtil.readFile("bill"));
+//        try {
+//            this.listBills = this.billFileUtil.readFile("bill");
+//
+//            System.out.println(this.billFileUtil.readFile("bill"));
+//
+//            for (Bill bill : listBills) {
+//                this.billListPanel.add(new BillCard(bill, this.homePage));
+//            }
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Class object not found");
+//        } catch (IOException e) {
+//            System.out.println("Error initializing stream");
+//        }
 
-            for (Bill bill : listBills) {
-                this.billListPanel.add(new BillCard(bill, this.homePage));
-            }
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class object not found");
-        } catch (IOException e) {
-            System.out.println("Error initializing stream");
-        }
     }
 
     public void addNewBillToListPanel(Bill bill) {
-        this.billListPanel.add(new BillCard(bill, this.homePage));
+        BillCard card = new BillCard(bill, homePage);
+        this.billListPanel.add(card);
     }
     
     public void reRenderBilltListPanel(List<Bill> curentRenderBillList) {
@@ -90,6 +96,11 @@ public class BillInterface extends javax.swing.JPanel {
                 addSoldBillBtnMouseClicked(evt);
             }
         });
+        addSoldBillBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSoldBillBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout navBarPanelLayout = new javax.swing.GroupLayout(navBarPanel);
         navBarPanel.setLayout(navBarPanelLayout);
@@ -132,7 +143,7 @@ public class BillInterface extends javax.swing.JPanel {
             .addGroup(BillInterfacePanelLayout.createSequentialGroup()
                 .addComponent(navBarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(billListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                .addComponent(billListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -152,14 +163,16 @@ public class BillInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_filterBillBtnActionPerformed
 
     private void addSoldBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addSoldBillBtnMouseClicked
-        // TODO add your handling code here:
-//        this.homePage.menuClicked(this.homePage.addBillSold);
+        this.homePage.menuClicked(this.homePage.addBillSold);
     }//GEN-LAST:event_addSoldBillBtnMouseClicked
 
     private void addBuyBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBuyBillBtnMouseClicked
-        // TODO add your handling code here:
         this.homePage.menuClicked(this.homePage.addBillBuy);
     }//GEN-LAST:event_addBuyBillBtnMouseClicked
+
+    private void addSoldBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSoldBillBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addSoldBillBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -45,6 +45,10 @@ public class BillBuyDetail extends javax.swing.JPanel {
         initTable();
     }
 
+    public BillBuyDetail(HomePage aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     private void initTable() {
 
         modelProductTable = new DefaultTableModel();
@@ -540,7 +544,7 @@ public class BillBuyDetail extends javax.swing.JPanel {
         editBuyBill.setItems(listItem);
         editBuyBill.setTotal(calculateTotalPriceOfBill());
         editBuyBill.setCreatedAt(LocalDate.now());
-        editBuyBill.setType("buy");
+        editBuyBill.setType("Buy");
         int indexProduct = this.homePage.billInterface.listBills.indexOf(this.BillInfo);
 
         this.homePage.billInterface.listBills.set(indexProduct, editBuyBill);

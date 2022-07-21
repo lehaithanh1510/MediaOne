@@ -252,8 +252,16 @@ public class BillCard extends javax.swing.JPanel {
 
     private void editBillCardBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBillCardBtnMouseClicked
         System.out.println(this.homePage);
-        this.homePage.editBillBuy.setBillInfo(this.billInfo);
-        this.homePage.menuClicked(homePage.editBillBuy);
+        if (billTypeText.getText().equals("Sold")){
+            this.homePage.editBillSold.setBillInfo(this.billInfo);
+            this.homePage.menuClicked(homePage.editBillSold);
+        } else if (billTypeText.getText().equals("Buy")) {
+            System.out.println("bill buy");
+            this.homePage.editBillBuy.setBillInfo(this.billInfo);        
+            this.homePage.menuClicked(homePage.editBillBuy);
+        }
+        
+        
     }//GEN-LAST:event_editBillCardBtnMouseClicked
 
     private void deleteBillCardBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBillCardBtnMouseClicked
