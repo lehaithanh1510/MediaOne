@@ -29,18 +29,29 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private DefaultTableModel model;
     private String[] columHeaders = new String[]{"ID", "Name", "Quantity", "Unit Price"};
     private Bill BillInfo;
+    private int choosenRow;
+    private BillItem chooseItem;
 
     public BillSoldDetail(HomePage homePage, String typeInterface) {
         initComponents();
         this.homePage = homePage;
         initData();
         initTable();
+        if (chooseItem == null) {
+            btnDelete.setEnabled(false);
+        } else {
+            addProductBtn.setEnabled(false);
+        }
+        if (typeInterface == "add") {
+            saveBillBtn.setEnabled(false);
+        } else {
+            createBillBtn.setEnabled(false);
+        }
     }
 
     private void initData() {
         listItems.add(new BillItem("P01", "Titanic", 3, 100));
         listItems.add(new BillItem("P02", "Mozart", 5, 200));
-
     }
 
     private void initTable() {
@@ -54,13 +65,13 @@ public class BillSoldDetail extends javax.swing.JPanel {
         productTable.setModel(model);
 
     }
-    
+
     public void setBillInfo(Bill bill) {
         BillInfo = bill;
         listItems = bill.getItems();
         initTable();
     }
-    
+
     private double calculateTotalPriceOfBill() {
         double totalPrice = 0;
         for (int i = 0; i < listItems.size(); i++) {
@@ -70,26 +81,6 @@ public class BillSoldDetail extends javax.swing.JPanel {
         return totalPrice;
     }
 
-//    private void updateTotalAmount() {
-//        try {
-//            float VAT = 0.02f;
-//            int sum = 0;
-////            for (int i = 0; i < listIn.size(); i++) {
-////                BillItem item = listIn.get(i);
-////                sum += item.getAmount();
-////            }
-//            txtTotalAmount.setText("" + sum);
-//            txtVATRate.setText("" + VAT);
-//            txtVATAmount.setText("" + (VAT * sum));
-//            txtGrandTotal.setText("" + (Float.parseFloat(txtTotalAmount.getText())
-//                    + Float.parseFloat(txtVATAmount.getText())));
-//
-//            StringBuilder sb = new StringBuilder();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-//        }
-//    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -131,8 +122,8 @@ public class BillSoldDetail extends javax.swing.JPanel {
         txtInWords = new javax.swing.JTextField();
         jProgressBar1 = new javax.swing.JProgressBar();
         PnlButton = new javax.swing.JPanel();
-        bntSave = new javax.swing.JButton();
-        btnCreateBill = new javax.swing.JButton();
+        saveBillBtn = new javax.swing.JButton();
+        createBillBtn = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
         BillDetail.setBackground(new java.awt.Color(0, 153, 153));
@@ -387,25 +378,27 @@ public class BillSoldDetail extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        bntSave.setText(" Save");
-        bntSave.addMouseListener(new java.awt.event.MouseAdapter() {
+        saveBillBtn.setText(" Save");
+        saveBillBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bntSaveMouseClicked(evt);
+                saveBillBtnMouseClicked(evt);
             }
         });
 
-        btnCreateBill.setText("Create Bill");
-        btnCreateBill.addMouseListener(new java.awt.event.MouseAdapter() {
+        createBillBtn.setBackground(new java.awt.Color(0, 255, 102));
+        createBillBtn.setText("Create Bill");
+        createBillBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCreateBillMouseClicked(evt);
+                createBillBtnMouseClicked(evt);
             }
         });
-        btnCreateBill.addActionListener(new java.awt.event.ActionListener() {
+        createBillBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateBillActionPerformed(evt);
+                createBillBtnActionPerformed(evt);
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(255, 0, 0));
         btnBack.setText("Back");
         btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -421,9 +414,9 @@ public class BillSoldDetail extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCreateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(createBillBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bntSave, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(saveBillBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         PnlButtonLayout.setVerticalGroup(
@@ -431,8 +424,8 @@ public class BillSoldDetail extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlButtonLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bntSave, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreateBill, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveBillBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createBillBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(152, 152, 152))
         );
@@ -484,16 +477,15 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private void productTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productTableMouseClicked
 
         try {
-            int row = productTable.getSelectedRow();
+            choosenRow = productTable.getSelectedRow();
 
-            if (row >= 0) {
-                BillItem order = listItems.get(row);
-
-                txtID.setText(order.getId());
-                txtName.setText(order.getName());
-                txtQuantity.setText("" + order.getQuantity());
-                txtUnitPrice.setText("" + order.getUnitPrice());
-                //txtAmount.setText("" + Integer.parseInt(txtQuantity.getText()) * Integer.parseInt(txtUnitPrice.getText()));
+            if (choosenRow >= 0) {
+                chooseItem = listItems.get(choosenRow);
+                btnDelete.setEnabled(true);
+                txtID.setText(chooseItem.getId());
+                txtName.setText(chooseItem.getName());
+                txtQuantity.setText("" + chooseItem.getQuantity());
+                txtUnitPrice.setText("" + chooseItem.getUnitPrice());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -627,9 +619,8 @@ public class BillSoldDetail extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnBackMouseClicked
 
-    private void btnCreateBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCreateBillMouseClicked
-        System.out.println("hello");
-        BillSold soldBill = new BillSold() ;
+    private void createBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBillBtnMouseClicked
+        BillSold soldBill = new BillSold();
         soldBill.setId((UUID.randomUUID().toString()));
         soldBill.setName("abc");
         soldBill.setCreatedAt(LocalDate.now());
@@ -639,9 +630,9 @@ public class BillSoldDetail extends javax.swing.JPanel {
         this.homePage.billInterface.listBills.add(soldBill);
         this.homePage.billInterface.addNewBillToListPanel(soldBill);
         this.homePage.menuClicked(this.homePage.billInterface);
-    }//GEN-LAST:event_btnCreateBillMouseClicked
+    }//GEN-LAST:event_createBillBtnMouseClicked
 
-    private void btnCreateBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateBillActionPerformed
+    private void createBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBillBtnActionPerformed
 //        System.out.println("hello");
 //        BillSold soldBill = new BillSold() ;
 //        soldBill.setId((UUID.randomUUID().toString()));
@@ -653,9 +644,9 @@ public class BillSoldDetail extends javax.swing.JPanel {
 //        this.homePage.billInterface.listBills.add(soldBill);
 //        this.homePage.billInterface.addNewBillToListPanel(soldBill);
 //        this.homePage.menuClicked(this.homePage.billInterface);
-    }//GEN-LAST:event_btnCreateBillActionPerformed
+    }//GEN-LAST:event_createBillBtnActionPerformed
 
-    private void bntSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntSaveMouseClicked
+    private void saveBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBillBtnMouseClicked
         BillSold editBillSold = new BillSold();
         editBillSold.setId(this.BillInfo.getId());
         editBillSold.setItems(listItems);
@@ -668,7 +659,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
 
         this.homePage.billInterface.reRenderBilltListPanel(this.homePage.billInterface.listBills);
         this.homePage.menuClicked(homePage.billInterface);
-    }//GEN-LAST:event_bntSaveMouseClicked
+    }//GEN-LAST:event_saveBillBtnMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -678,11 +669,10 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private javax.swing.JPanel PnlCustomerInfo;
     private javax.swing.JPanel PnlTableProducts;
     private javax.swing.JButton addProductBtn;
-    private javax.swing.JButton bntSave;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCreateBill;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton createBillBtn;
     private javax.swing.JLabel idLabel;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -699,6 +689,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private javax.swing.JPanel productEnterInfoPanel;
     private javax.swing.JTable productTable;
     private javax.swing.JLabel quantityLabel;
+    private javax.swing.JButton saveBillBtn;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCustomerofName;
     private javax.swing.JTextField txtGrandTotal;

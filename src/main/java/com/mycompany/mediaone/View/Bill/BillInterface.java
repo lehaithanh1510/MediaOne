@@ -3,15 +3,13 @@ package com.mycompany.mediaone.View.Bill;
 import com.mycompany.SharedType.WrapLayout;
 import com.mycompany.mediaone.Component.BillComponent.BillCard;
 import com.mycompany.mediaone.Model.BillModel.Bill;
-import com.mycompany.mediaone.Util.FileUtil;
+import com.mycompany.mediaone.Model.Product;
 import com.mycompany.mediaone.View.HomePage;
-import com.mycompany.mediaone.View.Bill.BillSoldDetail;
 import java.io.IOException;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import javax.swing.JButton;
+import java.util.stream.Collectors;
 
 public class BillInterface extends javax.swing.JPanel {
 
@@ -23,7 +21,6 @@ public class BillInterface extends javax.swing.JPanel {
         initComponents();
         this.billListPanel.setLayout(new WrapLayout());
         this.homePage = homePage;
-
 
 //        try {
 //            this.listBills = this.billFileUtil.readFile("bill");
@@ -38,14 +35,13 @@ public class BillInterface extends javax.swing.JPanel {
 //        } catch (IOException e) {
 //            System.out.println("Error initializing stream");
 //        }
-
     }
 
     public void addNewBillToListPanel(Bill bill) {
         BillCard card = new BillCard(bill, homePage);
         this.billListPanel.add(card);
     }
-    
+
     public void reRenderBilltListPanel(List<Bill> curentRenderBillList) {
         this.billListPanel.removeAll();
         billListPanel.revalidate();
@@ -71,7 +67,7 @@ public class BillInterface extends javax.swing.JPanel {
         BillInterfacePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BILLS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
         BillInterfacePanel.setPreferredSize(new java.awt.Dimension(689, 546));
 
-        filterBillBtn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Input Bill", "Sell Bill", "All" }));
+        filterBillBtn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buy Bill", "Sold Bill", "All" }));
         filterBillBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         filterBillBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,6 +156,16 @@ public class BillInterface extends javax.swing.JPanel {
 
     private void filterBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterBillBtnActionPerformed
         // TODO add your handling code here:
+        var billType = "Sold Bill".equals(filterBillBtn.getSelectedItem().toString()) ? "sold" : "buy";
+        if (!"All".equals(billType)) {
+            List<Bill> filteredBill = this.listBills.stream()
+                    .filter(bill -> billType.equals(bill.getType()))
+                    .collect(Collectors.toList());
+
+            reRenderBilltListPanel(filteredBill);
+        } else {
+            reRenderBilltListPanel(listBills);
+        }
     }//GEN-LAST:event_filterBillBtnActionPerformed
 
     private void addSoldBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addSoldBillBtnMouseClicked

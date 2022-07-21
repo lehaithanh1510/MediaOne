@@ -490,9 +490,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnBack" min="-2" pref="88" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnCreateBill" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="createBillBtn" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="bntSave" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="saveBillBtn" min="-2" pref="94" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -502,8 +502,8 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bntSave" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="btnCreateBill" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="saveBillBtn" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="createBillBtn" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="btnBack" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
@@ -512,25 +512,31 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="bntSave">
+            <Component class="javax.swing.JButton" name="saveBillBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value=" Save"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bntSaveMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveBillBtnMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnCreateBill">
+            <Component class="javax.swing.JButton" name="createBillBtn">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="66" green="ff" red="0" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Create Bill"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCreateBillMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateBillActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="createBillBtnMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createBillBtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnBack">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="ff" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Back"/>
               </Properties>
               <Events>

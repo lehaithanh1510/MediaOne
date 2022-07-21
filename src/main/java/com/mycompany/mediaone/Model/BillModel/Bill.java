@@ -18,8 +18,8 @@ abstract public class Bill {
     public void setId(String id) {
         this.id = id;
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -48,7 +48,11 @@ abstract public class Bill {
     }
 
     public double getTotal() {
-        return total;
+        double total = 0;
+        for (int i = 0; i < items.size(); i++) {
+            total += items.get(i).getAmount();
+        }
+        return (int) total;
     }
 
     public LocalDate getCreatedAt() {

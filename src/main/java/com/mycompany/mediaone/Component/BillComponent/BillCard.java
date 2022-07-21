@@ -265,7 +265,7 @@ public class BillCard extends javax.swing.JPanel {
     }//GEN-LAST:event_editBillCardBtnMouseClicked
 
     private void deleteBillCardBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteBillCardBtnMouseClicked
-        if (JOptionPane.showConfirmDialog(null, "Are you sure to delete this product", "Confirmation",
+        if (JOptionPane.showConfirmDialog(null, "Are you sure to delete this bill", "Confirmation",
                 JOptionPane.YES_NO_OPTION) == 0) {
             this.homePage.billInterface.listBills.remove(billInfo);
 //            try {
