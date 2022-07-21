@@ -3,6 +3,7 @@ package com.mycompany.mediaone.Component.BillComponent;
 import com.mycompany.SharedType.WrapLayout;
 import com.mycompany.mediaone.Model.BillModel.Bill;
 import com.mycompany.mediaone.Model.BillModel.BillItem;
+import com.mycompany.mediaone.Model.BillModel.BillSold;
 import com.mycompany.mediaone.View.HomePage;
 import com.mycompany.mediaone.View.Product.AddProduct;
 import java.awt.Color;
@@ -251,12 +252,10 @@ public class BillCard extends javax.swing.JPanel {
     }//GEN-LAST:event_billTypeTextActionPerformed
 
     private void editBillCardBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editBillCardBtnMouseClicked
-        System.out.println(this.homePage);
         if (billTypeText.getText().equals("Sold")){
-            this.homePage.editBillSold.setBillInfo(this.billInfo);
+            this.homePage.editBillSold.setBillInfo((BillSold) this.billInfo);
             this.homePage.menuClicked(homePage.editBillSold);
         } else if (billTypeText.getText().equals("Buy")) {
-            System.out.println("bill buy");
             this.homePage.editBillBuy.setBillInfo(this.billInfo);        
             this.homePage.menuClicked(homePage.editBillBuy);
         }

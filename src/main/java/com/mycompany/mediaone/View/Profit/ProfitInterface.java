@@ -58,7 +58,7 @@ public class ProfitInterface extends javax.swing.JPanel {
         BillSold soldBill = new BillSold();
         soldBill.setId((UUID.randomUUID().toString()));
         soldBill.setName("abc");
-        soldBill.setCreatedAt(LocalDate.now());
+//        soldBill.setCreatedAt(Date.now());
         soldBill.setType("sold");
         soldBill.setItems(listItems);
         soldBill.setCustomer(customer);
@@ -69,7 +69,7 @@ public class ProfitInterface extends javax.swing.JPanel {
         BillBuy buyBill = new BillBuy();
         buyBill.setId((UUID.randomUUID().toString()));
         buyBill.setName("abc");
-        buyBill.setCreatedAt(LocalDate.now());
+//        buyBill.setCreatedAt(LocalDate.now());
         buyBill.setType("buy");
         buyBill.setItems(listItems);
         listBuyBill.add(buyBill);

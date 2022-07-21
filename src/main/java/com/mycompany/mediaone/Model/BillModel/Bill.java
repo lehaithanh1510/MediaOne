@@ -1,6 +1,7 @@
 package com.mycompany.mediaone.Model.BillModel;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 abstract public class Bill {
@@ -8,7 +9,7 @@ abstract public class Bill {
     private String id;
     private String name;
     private double total; //grand total
-    private LocalDate createdAt;
+    private Date createdAt;
     private List<BillItem> items;
     private String type;
 
@@ -23,7 +24,7 @@ abstract public class Bill {
         this.name = name;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
@@ -55,7 +56,7 @@ abstract public class Bill {
         return (double) total;
     }
 
-    public LocalDate getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 
