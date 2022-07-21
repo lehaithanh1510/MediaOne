@@ -1,6 +1,7 @@
 com\mycompany\mediaone\Component\BillComponent\BillCard$2.class
 com\mycompany\mediaone\MediaOne.class
 com\mycompany\mediaone\Component\ProductComponent\ProductCard$1.class
+com\mycompany\mediaone\View\Bill\BillBuyDetail$13.class
 com\mycompany\mediaone\View\Product\ProductInterface$6.class
 com\mycompany\mediaone\View\Bill\BillBuyDetail$2.class
 com\mycompany\mediaone\View\Bill\BillBuyDetail$5.class

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -31,6 +32,7 @@ public class BillBuyDetail extends javax.swing.JPanel {
         initComponents();
         this.homePage = homePage;
         idInputField.setText(UUID.randomUUID().toString());
+
         if (chooseItem == null) {
             saveProductBtn.setEnabled(false);
         } else {
@@ -85,7 +87,13 @@ public class BillBuyDetail extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel3 = new javax.swing.JPanel();
         BillDetail = new javax.swing.JPanel();
+        nameAndDatePanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        nameBillTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        dateBillTextField = new com.toedter.calendar.JDateChooser();
         PnlTableProducts = new javax.swing.JPanel();
         listBillItem = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
@@ -105,8 +113,61 @@ public class BillBuyDetail extends javax.swing.JPanel {
         createBillBtn = new javax.swing.JButton();
         saveBillBtn = new javax.swing.JButton();
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         BillDetail.setBackground(new java.awt.Color(0, 153, 153));
         BillDetail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BILL BUY DETAIL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 3, 24), new java.awt.Color(255, 255, 255))); // NOI18N
+
+        jLabel1.setText("Date:");
+
+        nameBillTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameBillTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Name:");
+
+        dateBillTextField.setDateFormatString("dd-MM-yyyy");
+
+        javax.swing.GroupLayout nameAndDatePanelLayout = new javax.swing.GroupLayout(nameAndDatePanel);
+        nameAndDatePanel.setLayout(nameAndDatePanelLayout);
+        nameAndDatePanelLayout.setHorizontalGroup(
+            nameAndDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nameAndDatePanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nameBillTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(dateBillTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+        nameAndDatePanelLayout.setVerticalGroup(
+            nameAndDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nameAndDatePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nameAndDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nameAndDatePanelLayout.createSequentialGroup()
+                        .addComponent(dateBillTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(nameAndDatePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nameBillTextField)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
 
         PnlTableProducts.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -238,8 +299,9 @@ public class BillBuyDetail extends javax.swing.JPanel {
         PnlTableProductsLayout.setVerticalGroup(
             PnlTableProductsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlTableProductsLayout.createSequentialGroup()
-                .addComponent(listBillItem, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(listBillItem, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(productEditInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -293,9 +355,9 @@ public class BillBuyDetail extends javax.swing.JPanel {
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveBillBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(createBillBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(33, 33, 33))
         );
         PnlButtonLayout.setVerticalGroup(
             PnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,11 +378,15 @@ public class BillBuyDetail extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(BillDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(PnlButton, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
-                    .addComponent(PnlTableProducts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(PnlTableProducts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameAndDatePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
         BillDetailLayout.setVerticalGroup(
             BillDetailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BillDetailLayout.createSequentialGroup()
+                .addComponent(nameAndDatePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PnlTableProducts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PnlButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,21 +397,13 @@ public class BillBuyDetail extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(BillDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(12, Short.MAX_VALUE)))
+            .addComponent(BillDetail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 712, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BillDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(BillDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -429,6 +487,9 @@ public class BillBuyDetail extends javax.swing.JPanel {
     public void setBillInfo(Bill bill) {
         BillInfo = bill;
         listItem = bill.getItems();
+        nameBillTextField.setText(this.BillInfo.getName());
+        dateBillTextField.setDate(this.BillInfo.getCreatedAt());
+
         initTable();
     }
 
@@ -509,8 +570,9 @@ public class BillBuyDetail extends javax.swing.JPanel {
         newBuyBill.setId(UUID.randomUUID().toString());
         newBuyBill.setItems(listItem);
         newBuyBill.setTotal(calculateTotalPriceOfBill());
-        newBuyBill.setCreatedAt(LocalDate.now());
+        newBuyBill.setCreatedAt(dateBillTextField.getDate());
         newBuyBill.setType("buy");
+        newBuyBill.setName(this.nameBillTextField.getText());
         this.homePage.billInterface.listBills.add(newBuyBill);
         this.homePage.billInterface.addNewBillToListPanel(newBuyBill);
         this.homePage.menuClicked(this.homePage.billInterface);
@@ -543,8 +605,10 @@ public class BillBuyDetail extends javax.swing.JPanel {
         editBuyBill.setId(this.BillInfo.getId());
         editBuyBill.setItems(listItem);
         editBuyBill.setTotal(calculateTotalPriceOfBill());
-        editBuyBill.setCreatedAt(LocalDate.now());
-        editBuyBill.setType("Buy");
+        editBuyBill.setCreatedAt(dateBillTextField.getDate());
+        editBuyBill.setType("buy");
+        editBuyBill.setName(this.nameBillTextField.getText());
+
         int indexProduct = this.homePage.billInterface.listBills.indexOf(this.BillInfo);
 
         this.homePage.billInterface.listBills.set(indexProduct, editBuyBill);
@@ -557,6 +621,10 @@ public class BillBuyDetail extends javax.swing.JPanel {
         this.homePage.menuClicked(homePage.billInterface);
     }//GEN-LAST:event_saveBillBtnMouseClicked
 
+    private void nameBillTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameBillTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameBillTextFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BillDetail;
@@ -565,9 +633,15 @@ public class BillBuyDetail extends javax.swing.JPanel {
     private javax.swing.JButton addProductBtn;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton createBillBtn;
+    private com.toedter.calendar.JDateChooser dateBillTextField;
     private javax.swing.JTextField idInputField;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane listBillItem;
+    private javax.swing.JPanel nameAndDatePanel;
+    private javax.swing.JTextField nameBillTextField;
     private javax.swing.JTextField nameInputField;
     private javax.swing.JLabel nameItemLabel;
     private javax.swing.JPanel productEditInfo;
