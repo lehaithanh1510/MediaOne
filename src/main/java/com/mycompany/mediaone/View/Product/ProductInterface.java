@@ -1,7 +1,6 @@
 package com.mycompany.mediaone.View.Product;
 
 import com.mycompany.mediaone.Model.Product;
-import com.mycompany.SharedType.EProductType;
 import com.mycompany.mediaone.Util.ProductUtil;
 import com.mycompany.SharedType.WrapLayout;
 import com.mycompany.mediaone.Component.ProductComponent.ProductCard;

@@ -422,23 +422,23 @@ public class BillSoldDetail extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void productTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productTableMouseClicked
-
-        try {
-            int row = productTable.getSelectedRow();
-
-            if (row >= 0) {
-                BillItem order = listIn.get(row);
-
-                txtID.setText(order.getId());
-                txtName.setText(order.getName());
-                txtQuantity.setText("" + order.getQuantity());
-                txtUnitPrice.setText("" + order.getUnitPrice());
-                txtAmount.setText("" + Integer.parseInt(txtQuantity.getText()) * Integer.parseInt(txtUnitPrice.getText()));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+//
+//        try {
+//            int row = productTable.getSelectedRow();
+//
+//            if (row >= 0) {
+//                BillItem order = listIn.get(row);
+//
+//                txtID.setText(order.getId());
+//                txtName.setText(order.getName());
+//                txtQuantity.setText("" + order.getQuantity());
+//                txtUnitPrice.setText("" + order.getUnitPrice());
+//                txtAmount.setText("" + Integer.parseInt(txtQuantity.getText()) * Integer.parseInt(txtUnitPrice.getText()));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+//        }
     }//GEN-LAST:event_productTableMouseClicked
 
     private void txtTotalAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalAmountActionPerformed
@@ -446,109 +446,108 @@ public class BillSoldDetail extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTotalAmountActionPerformed
 
     private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
-        try {
-            StringBuilder errors = new StringBuilder();
-            if (txtID.getText().equals("")) {
-                errors.append("ID must be entered\n");
-                txtID.setBackground(Color.red);
-            } else {
-                txtID.setBackground(Color.white);
-            }
-            if (txtName.getText().equals("")) {
-                errors.append("Name must be entered\n");
-                txtName.setBackground(Color.red);
-            } else {
-                txtName.setBackground(Color.white);
-            }
-            if (txtQuantity.getText().equals("")) {
-                errors.append("Quantity must be entered\n");
-                txtQuantity.setBackground(Color.red);
-            } else {
-                txtQuantity.setBackground(Color.white);
-            }
-            if (txtUnitPrice.getText().equals("")) {
-                errors.append("Unit price must be entered\n");
-                txtUnitPrice.setBackground(Color.red);
-            } else {
-                txtUnitPrice.setBackground(Color.white);
-            }
-            if (txtAmount.getText().equals("")) {
-                errors.append("Amount must be entered\n");
-                txtAmount.setBackground(Color.red);
-            } else {
-                txtAmount.setBackground(Color.white);
-            }
-            //            if(!errors.isEmpty()){
-            //                JOptionPane.showMessageDialog(this, errors.toString());
-            //                return;
-            //            }
-
-            BillItem billItem = new BillItem();
-            billItem.setId(txtID.getText());
-            billItem.setName(txtName.getText());
-            billItem.setQuantity(Integer.parseInt(txtQuantity.getText()));
-            billItem.setUnitPrice(Double.parseDouble(txtUnitPrice.getText()));
-            billItem.setAmount(Double.parseDouble(txtAmount.getText()));
-
-            boolean isExisted = false;
-            for (int i = 0; i < listIn.size(); i++) {
-                BillItem billItem1 = listIn.get(i);
-                if (billItem1.getId().equals(billItem.getId())) {
-                    listIn.set(i, billItem);
-                    isExisted = true;
-                    break;
-
-                }
-            }
-            if (!isExisted) {
-                listIn.add(billItem);
-            }
-            model.setRowCount(0);
-            listIn.forEach(item -> {
-                model.addRow(new Object[]{item.getId(), item.getName(),
-                    item.getQuantity(), item.getUnitPrice(), item.getAmount()});
-            });
-
-            model.fireTableDataChanged();
-
-            JOptionPane.showMessageDialog(this, "New product saved or updated");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+//        try {
+//            StringBuilder errors = new StringBuilder();
+//            if (txtID.getText().equals("")) {
+//                errors.append("ID must be entered\n");
+//                txtID.setBackground(Color.red);
+//            } else {
+//                txtID.setBackground(Color.white);
+//            }
+//            if (txtName.getText().equals("")) {
+//                errors.append("Name must be entered\n");
+//                txtName.setBackground(Color.red);
+//            } else {
+//                txtName.setBackground(Color.white);
+//            }
+//            if (txtQuantity.getText().equals("")) {
+//                errors.append("Quantity must be entered\n");
+//                txtQuantity.setBackground(Color.red);
+//            } else {
+//                txtQuantity.setBackground(Color.white);
+//            }
+//            if (txtUnitPrice.getText().equals("")) {
+//                errors.append("Unit price must be entered\n");
+//                txtUnitPrice.setBackground(Color.red);
+//            } else {
+//                txtUnitPrice.setBackground(Color.white);
+//            }
+//            if (txtAmount.getText().equals("")) {
+//                errors.append("Amount must be entered\n");
+//                txtAmount.setBackground(Color.red);
+//            } else {
+//                txtAmount.setBackground(Color.white);
+//            }
+//            //            if(!errors.isEmpty()){
+//            //                JOptionPane.showMessageDialog(this, errors.toString());
+//            //                return;
+//            //            }
+//
+//            BillItem billItem = new BillItem();
+//            billItem.setId(txtID.getText());
+//            billItem.setName(txtName.getText());
+//            billItem.setQuantity(Integer.parseInt(txtQuantity.getText()));
+//            billItem.setUnitPrice(Double.parseDouble(txtUnitPrice.getText()));
+//            billItem.setAmount(Double.parseDouble(txtAmount.getText()));
+//
+//            boolean isExisted = false;
+//            for (int i = 0; i < listIn.size(); i++) {
+//                BillItem billItem1 = listIn.get(i);
+//                if (billItem1.getId().equals(billItem.getId())) {
+//                    listIn.set(i, billItem);
+//                    isExisted = true;
+//                    break;
+//
+//                }
+//            }
+//            if (!isExisted) {
+//                listIn.add(billItem);
+//            }
+//            model.setRowCount(0);
+//            listIn.forEach(item -> {
+//                model.addRow(new Object[]{item.getId(), item.getName(),
+//                    item.getQuantity(), item.getUnitPrice(), item.getAmount()});
+//            });
+//
+//            model.fireTableDataChanged();
+//
+//            JOptionPane.showMessageDialog(this, "New product saved or updated");
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+//        }
     }//GEN-LAST:event_addProductBtnActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            if (txtID.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Nothing is to deleted");
-                return;
-            }
-            if (JOptionPane.showConfirmDialog(this, "Do you want to delete the product "
-                    + txtID.getText(), "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
-                return;
-            }
-            boolean isDeleted = false;
-            for (int i = 0; i < listIn.size(); i++) {
-                BillItem item = listIn.get(i);
-                if (item.getId().equals(txtID.getText())) {
-                    listIn.remove(i);
-                    isDeleted = true;
-                    break;
-                }
-            }
-            if (isDeleted) {
-                JOptionPane.showMessageDialog(this, "The product deleted");
-                initTable();
-                txtID.setText("");
-                txtName.setText("");
-                txtAmount.setText("");
-                txtQuantity.setText("");
-                txtUnitPrice.setText("");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        }
+//        try {
+//            if (txtID.getText().equals("")) {
+//                JOptionPane.showMessageDialog(this, "Nothing is to deleted");
+//                return;
+//            }
+//            if (JOptionPane.showConfirmDialog(this, "Do you want to delete the product "
+//                    + txtID.getText(), "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION) {
+//                return;
+//            }
+//            boolean isDeleted = false;
+//            for (int i = 0; i < listIn.size(); i++) {
+//                BillItem item = listIn.get(i);
+//                if (item.getId().equals(txtID.getText())) {
+//                    listIn.remove(i);
+//                    isDeleted = true;
+//                    break;
+//                }
+//            }
+//            if (isDeleted) {
+//                JOptionPane.showMessageDialog(this, "The product deleted");
+//                initTable();
+//                txtID.setText("");
+//                txtName.setText("");
+//                txtQuantity.setText("");
+//                txtUnitPrice.setText("");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+//        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEditActionPerformed
@@ -560,7 +559,6 @@ public class BillSoldDetail extends javax.swing.JPanel {
         txtName.setBackground(Color.white);
         txtQuantity.setBackground(Color.white);
         txtUnitPrice.setBackground(Color.white);
-        txtAmount.setBackground(Color.white);
     }//GEN-LAST:event_txtEditActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -569,7 +567,6 @@ public class BillSoldDetail extends javax.swing.JPanel {
         layout.last(productEnterInfoPanel);
         txtID.setText("");
         txtName.setText("");
-        txtAmount.setText("");
         txtQuantity.setText("");
         txtUnitPrice.setText("");
 
@@ -577,7 +574,6 @@ public class BillSoldDetail extends javax.swing.JPanel {
         txtName.setBackground(Color.white);
         txtQuantity.setBackground(Color.white);
         txtUnitPrice.setBackground(Color.white);
-        txtAmount.setBackground(Color.white);
 
         txtID.requestFocus();
 
