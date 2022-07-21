@@ -51,41 +51,7 @@ public class ProfitInterface extends javax.swing.JPanel {
         search.setEnabled(false);
         profit.setEnabled(false);
     }
-
-<<<<<<< HEAD
     
-    
-=======
-    private void initData() {
-        listItems.add(new BillItem("02", "Slayer", 6, 200));
-        listItems.add(new BillItem("P01", "Utaka", 1, 400));
-        listItems.add(new BillItem("P02", "Santa", 3, 400));
-        customer = new Customer("Tran Xuan Loc", "0899999999", "Dai Co Viet, Hai Ba Trung, Ha Noi");
-
-        BillSold soldBill = new BillSold();
-        soldBill.setId((UUID.randomUUID().toString()));
-        soldBill.setName("abc");
-//        soldBill.setCreatedAt(Date.now());
-        soldBill.setType("sold");
-        soldBill.setItems(listItems);
-        soldBill.setCustomer(customer);
-
-        listSoldBill.add(soldBill);
-        listSoldBill.add(soldBill);
-
-        BillBuy buyBill = new BillBuy();
-        buyBill.setId((UUID.randomUUID().toString()));
-        buyBill.setName("abc");
-//        buyBill.setCreatedAt(LocalDate.now());
-        buyBill.setType("buy");
-        buyBill.setItems(listItems);
-        listBuyBill.add(buyBill);
-        listBuyBill.add(buyBill);
-        totalCostLabel.setText(Double.toString(this.calculateTotalCost(listBuyBill)));
-        totalSaleLabel.setText(Double.toString(this.calculateTotalSale(listSoldBill)));
-    }
-
->>>>>>> 558250b7e221cf0dd276e50ea0c4ccb138ad5076
     private double calculateTotalCost(List<Bill> listBillCost) {
         double sum = 0;
 
