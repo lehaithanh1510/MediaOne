@@ -1,31 +1,18 @@
 package com.mycompany.mediaone.View.Profit;
 
 import com.mycompany.mediaone.Model.BillModel.Bill;
-import com.mycompany.mediaone.Model.BillModel.BillBuy;
 import com.mycompany.mediaone.Model.BillModel.BillItem;
-import com.mycompany.mediaone.Model.BillModel.BillSold;
 import com.mycompany.mediaone.Model.BillModel.Customer;
 import com.mycompany.mediaone.View.HomePage;
-import com.mycompany.mediaone.View.Bill.BillInterface;
-import com.mycompany.mediaone.View.Bill.BillSoldDetail;
-import com.mycompany.mediaone.View.Bill.BillBuyDetail;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.ArrayList;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ProfitInterface extends javax.swing.JPanel {
 
     private List<Bill> listSoldBill = new ArrayList<>();
     private List<Bill> listBuyBill = new ArrayList<>();
-    //private List<Bill> listBills = this.homePage.billInterface.listBills;
     private Customer customer;
     private List<BillItem> listItems = new ArrayList<>();
     private DefaultTableModel model;
@@ -632,7 +619,6 @@ public class ProfitInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_btnloadBillActionPerformed
 
     private void btnloadBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloadBillMouseClicked
-        System.out.println("Hello list out");
         listBuyBill = this.homePage.billInterface.listBills.stream()
                     .filter(bill -> "buy".equals(bill.getType()))
                     .collect(Collectors.toList());
@@ -642,8 +628,6 @@ public class ProfitInterface extends javax.swing.JPanel {
                     .filter(bill -> "sold".equals(bill.getType()))
                     .collect(Collectors.toList());
         
-        //System.out.println("size list: " + listSoldBill.size());
-        System.out.println("size list: " + this.homePage.billInterface.listBills.size());
         
         model = new DefaultTableModel();
 
