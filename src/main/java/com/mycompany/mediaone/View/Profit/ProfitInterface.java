@@ -1,20 +1,24 @@
 package com.mycompany.mediaone.View.Profit;
-import com.mycompany.mediaone.Model.Bill;
-import com.mycompany.mediaone.Model.BillItem;
-import com.mycompany.mediaone.Model.Customer;
+
+import com.mycompany.mediaone.Model.BillModel.Bill;
+import com.mycompany.mediaone.Model.BillModel.BillBuy;
+import com.mycompany.mediaone.Model.BillModel.BillItem;
+import com.mycompany.mediaone.Model.BillModel.BillSold;
+import com.mycompany.mediaone.Model.BillModel.Customer;
 import com.mycompany.mediaone.View.HomePage;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ArrayList;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 public class ProfitInterface extends javax.swing.JPanel {
-    private List<Bill> billList;
+
     private List<Bill> listSoldBill = new ArrayList<>();
     private List<Bill> listBuyBill = new ArrayList<>();
     private Customer customer;
@@ -22,67 +26,85 @@ public class ProfitInterface extends javax.swing.JPanel {
     private DefaultTableModel model;
     private final HomePage homePage;
     private String[] costcolumHeaders = new String[]{"Number", "ID", "Time", "Price"};
-    private String[] salecolumHeaders = new String[]{"Number","ID", "Time", "Price"};
+    private String[] salecolumHeaders = new String[]{"Number", "ID", "Time", "Price"};
     private Object total;
+
     public ProfitInterface(HomePage homePage) {
         initComponents();
         this.homePage = homePage;
         initData();
         initTable();
     }
-    public void loadTableBill(){ //load dữ liệu đầu vào
-        List<Bill> loadTableBill  = new List<>();
+
+    public void loadTableBill() { //load dữ liệu đầu vào
+        List<Bill> loadTableBill = new ArrayList<>();
     }
-    public void FomatCalendar(){
-        
+
+    public void FomatCalendar() {
+
     }
-    public void searchFor(){
+
+    public void searchFor() {
         search.setEnabled(false);
         profit.setEnabled(false);
-     //   searchText.setText();
     }
-  
+
     private void initData() {
-        listItems.add(new BillItem("02", "Slayer", 6, 200, 6 * 200));
-
-        listItems.add(new BillItem("P01", "Utaka", 1, 400, 1 * 400));
-        listItems.add(new BillItem("P02", "Santa", 3, 400, 3 * 400));
-
-        listSoldBill.add(new Bill("01pc", 500, new Date(), customer, listItems, "sold"));
-        listSoldBill.add(new Bill("02ad", 500, new Date(), customer, listItems, "sold"));
+        listItems.add(new BillItem("02", "Slayer", 6, 200));
+        listItems.add(new BillItem("P01", "Utaka", 1, 400));
+        listItems.add(new BillItem("P02", "Santa", 3, 400));
         customer = new Customer("Tran Xuan Loc", "0899999999", "Dai Co Viet, Hai Ba Trung, Ha Noi");
 
-        listBuyBill.add(new Bill("01vn", 500, new Date(), customer, listItems, "buy"));
-        listBuyBill.add(new Bill("02kv", 400, new Date(), customer, listItems, "buy"));
+        BillSold soldBill = new BillSold();
+        soldBill.setId((UUID.randomUUID().toString()));
+        soldBill.setName("abc");
+        soldBill.setCreatedAt(LocalDate.now());
+        soldBill.setType("sold");
+        soldBill.setItems(listItems);
+        soldBill.setCustomer(customer);
+
+        listSoldBill.add(soldBill);
+        listSoldBill.add(soldBill);
+
+        BillBuy buyBill = new BillBuy();
+        buyBill.setId((UUID.randomUUID().toString()));
+        buyBill.setName("abc");
+        buyBill.setCreatedAt(LocalDate.now());
+        buyBill.setType("buy");
+        buyBill.setItems(listItems);
+        listBuyBill.add(buyBill);
+        listBuyBill.add(buyBill);
         totalCostLabel.setText(Double.toString(this.calculateTotalCost(listBuyBill)));
         totalSaleLabel.setText(Double.toString(this.calculateTotalSale(listSoldBill)));
- 
     }
 
     private double calculateTotalCost(List<Bill> listBillCost) {
-        double sumb = 0;
-        
-        for( Bill i:listBillCost){
-            sumb += i;
-       }
-        return sumb;
+        double sum = 0;
+
+        for (Bill billCost : listBillCost) {
+            System.out.println(billCost);
+            sum += billCost.getTotal();
+        }
+        return sum;
     }
+
     private double calculateTotalSale(List<Bill> listBillSold) {
-       double sums = 0;
-       
-        for ( Bill k:listBillSale){
-            sums += k;
+        double sums = 0;
+
+        for (Bill billSold : listBillSold) {
+            sums += billSold.getTotal();
         }
         return sums;
     }
-    private double caculateTotalProfit(){
-        double sump = 0;
-        sump = sums - sumb;
-        return 0.0;
-       
+
+    private double caculateTotalProfit() {
+        double sum = 0;
+        sum = calculateTotalSale(this.listSoldBill) - calculateTotalCost(this.listBuyBill);
+        return sum;
+
     }
-  
-    private int initTable() {
+
+    private void initTable() {
         model = new DefaultTableModel();
         model.setColumnIdentifiers(costcolumHeaders);
 
@@ -98,9 +120,7 @@ public class ProfitInterface extends javax.swing.JPanel {
                 item.getCreatedAt(), item.getTotal()});
         });
         SalesTable.setModel(model);
-        return 0;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -586,11 +606,11 @@ public class ProfitInterface extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void profitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profitActionPerformed
-    
+
     }//GEN-LAST:event_profitActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-       
+
     }//GEN-LAST:event_searchActionPerformed
 
     private void timeFromMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeFromMouseClicked
@@ -598,19 +618,19 @@ public class ProfitInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_timeFromMouseClicked
 
     private void timeToMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeToMouseClicked
- 
+
     }//GEN-LAST:event_timeToMouseClicked
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-        
+
     }//GEN-LAST:event_searchMouseClicked
 
     private void textSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textSearchMouseClicked
-    
+
     }//GEN-LAST:event_textSearchMouseClicked
 
     private void searchTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFocusGained
-     
+
     }//GEN-LAST:event_searchTextFocusGained
 
     private void textSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textSearchFocusLost
@@ -618,55 +638,49 @@ public class ProfitInterface extends javax.swing.JPanel {
     }//GEN-LAST:event_textSearchFocusLost
 
     private void btnloadBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloadBillActionPerformed
-        // kiểm tra đầu vào của Bill trước khi truyền dữ liệu đến bảng
-        SimpleDateFormat TTime = new SimpleDateFormat("dd-MM-yyyy");
-        String datefrom = TTime.format(timeFrom.getDate());
-        String dateto = TTime.format(timeTo.getDate());
-        List<Bill> listBuyBill = new ArrayList<>();
-        List<Bill> listSoldBill = new ArrayList<>();
-        // Khởi tạo List truyền vào List<Bill> CreatAt của Bill: datecheck;
-        LocalTime datecheck = LocalTime.of(20, 1, 2022); //initDate
-        if ((datecheck.isAfter(timefrom) || datecheck.isEquals(timeto)) 
-                && (datecheck.isBefore(timeto) || datecheck.isEquals(timeto)))
-            {
-            //loadTable dã có điều kiện dàng buộc vô bảng CostTable;
-            model = new DefaultTableModel();
-            model.setColumnIdentifiers(costcolumHeaders);
+//        // kiểm tra đầu vào của Bill trước khi truyền dữ liệu đến bảng
+//        SimpleDateFormat TTime = new SimpleDateFormat("dd-MM-yyyy");
+//        String datefrom = TTime.format(timeFrom.getDate());
+//        String dateto = TTime.format(timeTo.getDate());
+//        List<Bill> listBuyBill = new ArrayList<>();
+//        List<Bill> listSoldBill = new ArrayList<>();
+//        // Khởi tạo List truyền vào List<Bill> CreatAt của Bill: datecheck;
+//        LocalTime datecheck = LocalTime.of(20, 1, 2022); //initDate
+//        if ((datecheck.isAfter(datefrom) || datecheck.isEquals(timeto))
+//                && (datecheck.isBefore(timeto) || datecheck.isEquals(timeto))) {
+//            //loadTable dã có điều kiện dàng buộc vô bảng CostTable;
+//            model = new DefaultTableModel();
+//            model.setColumnIdentifiers(costcolumHeaders);
+//
+//            listBuyBill.forEach(item -> {
+//                model.addRow(new Object[]{listBuyBill.indexOf(item), item.getId(),
+//                    item.getCreatedAt(), item.getTotal()});
+//            });
+//            CostsTable.setModel(model);
+//
+//            //loadTable dã có điều kiện dàng buộc vô bảng SaleTable;
+//            model = new DefaultTableModel();
+//            model.setColumnIdentifiers(salecolumHeaders);
+//            listSoldBill.forEach(item -> {
+//                model.addRow(new Object[]{listSoldBill.indexOf(item), item.getId(),
+//                    item.getCreatedAt(), item.getTotal()});
+//            });
+//            SalesTable.setModel(model);
+//        }
+//        if (datecheck.isBefore(timefrom) || datecheck.isAfter(timeto)) {
+//            JOptionPane.showMessageDialog(null, "Không có dữ liệu ! Vui lòng nhập lại ngày giờ");
+//        }
 
-            listBuyBill.forEach(item -> {
-            model.addRow(new Object[]{listBuyBill.indexOf(item), item.getId(),
-                item.getCreatedAt(), item.getTotal()});
-            });
-            CostsTable.setModel(model);
-                
-            //loadTable dã có điều kiện dàng buộc vô bảng SaleTable;
-            model = new DefaultTableModel();
-            model.setColumnIdentifiers(salecolumHeaders);
-            listSoldBill.forEach(item -> {
-            model.addRow(new Object[]{listSoldBill.indexOf(item), item.getId(),
-                item.getCreatedAt(), item.getTotal()});
-            });
-            SalesTable.setModel(model);
-            return 0;
-            }
-        if (datecheck.isBefore(timefrom) || datecheck.isAfter(timeto)){
-            JOptionPane.showMessageDialog(null, "Không có dữ liệu ! Vui lòng nhập lại ngày giờ");
-            return 0;
-        } 
-        
-        
-        
-        
     }//GEN-LAST:event_btnloadBillActionPerformed
 
     private void btnloadBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloadBillMouseClicked
-        
+
     }//GEN-LAST:event_btnloadBillMouseClicked
 
     private void totalProfitFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalProfitFocusLost
 
-        totalProfit.setText(Double.parseDouble(totalSaleLabel.getText()) - Double.parseDouble(totalCostLabel.getText())+"");
-        
+        totalProfit.setText(Double.parseDouble(totalSaleLabel.getText()) - Double.parseDouble(totalCostLabel.getText()) + "");
+
     }//GEN-LAST:event_totalProfitFocusLost
 
     private void textSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textSearchFocusGained
@@ -676,7 +690,6 @@ public class ProfitInterface extends javax.swing.JPanel {
     private void CostsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CostsTableMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_CostsTableMouseClicked
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

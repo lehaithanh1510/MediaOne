@@ -1,7 +1,8 @@
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\MediaOne.java
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\View\HomeInterface.java
+C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\Model\Employee.java
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\Model\BillModel\BillSold.java
-C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\SharedType\WrapLayout.java
+C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\View\Profit\ProfitInterface.java
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\Model\Product.java
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\View\Bill\BillSoldDetail.java
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\Component\BillComponent\BillCard.java
@@ -20,3 +21,4 @@ C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\co
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\Component\ProductComponent\ProductCard.java
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\Model\BillModel\BillBuy.java
 C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\mediaone\View\Bill\BillBuyDetail.java
+C:\Users\MY LAPTOP\OneDrive\Documents\NetBeansProjects\MediaOne\src\main\java\com\mycompany\SharedType\WrapLayout.java
