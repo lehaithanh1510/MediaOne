@@ -96,10 +96,11 @@
             <Component class="javax.swing.JComboBox" name="filterBillBtn">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="3">
-                    <StringItem index="0" value="Buy Bill"/>
-                    <StringItem index="1" value="Sold Bill"/>
-                    <StringItem index="2" value="All"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="All"/>
+                    <StringItem index="1" value="Buy Bill"/>
+                    <StringItem index="2" value="Sold Bill"/>
+                    <StringItem index="3" value=" "/>
                   </StringArray>
                 </Property>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -139,7 +140,6 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addSoldBillBtnMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addSoldBillBtnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
