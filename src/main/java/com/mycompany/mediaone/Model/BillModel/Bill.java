@@ -53,7 +53,7 @@ abstract public class Bill {
         for (int i = 0; i < items.size(); i++) {
             total += items.get(i).getAmount();
         }
-        return (double) total;
+        return total;
     }
 
     public Date getCreatedAt() {

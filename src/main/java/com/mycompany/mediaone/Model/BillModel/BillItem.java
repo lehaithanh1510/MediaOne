@@ -59,6 +59,7 @@ public class BillItem {
     }
 
     public double getAmount() {
+        amount = quantity * unitPrice;
         return amount;
     }
 

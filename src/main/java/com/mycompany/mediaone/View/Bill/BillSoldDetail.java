@@ -539,7 +539,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
             } else {
                 txtUnitPrice.setBackground(Color.white);
             }
-            if (!errors.isEmpty()) {
+            if (!(errors.length() == 0)) {
                 JOptionPane.showMessageDialog(this, errors.toString());
                 return;
             }
@@ -668,7 +668,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
                 errors.append("Product must be entered\n");
             }
             
-            if (!errors.isEmpty()) {
+            if (!(errors.length() == 0)) {
                 JOptionPane.showMessageDialog(this, errors.toString());
                 return;
             }
