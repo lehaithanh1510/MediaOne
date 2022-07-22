@@ -19,9 +19,10 @@ import java.util.List;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.html.CSS;
 
 public class BillSoldDetail extends javax.swing.JPanel {
-    
+
     private HomePage homePage;
     private String typeInterface;
     private List<BillItem> listItems = new ArrayList<>();
@@ -31,7 +32,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
     private Bill BillInfo;
     private int choosenRow;
     private BillItem chooseItem;
-    
+
     public BillSoldDetail(HomePage homePage, String typeInterface) {
         initComponents();
         this.homePage = homePage;
@@ -48,24 +49,24 @@ public class BillSoldDetail extends javax.swing.JPanel {
             createBillBtn.setEnabled(false);
         }
     }
-    
+
     private void initData() {
         listItems.add(new BillItem("P01", "Titanic", 3, 100));
         listItems.add(new BillItem("P02", "Mozart", 5, 200));
     }
-    
+
     private void initTable() {
         model = new DefaultTableModel();
         model.setColumnIdentifiers(columHeaders);
-        
+
         listItems.forEach(item -> {
             model.addRow(new Object[]{item.getId(), item.getName(),
                 item.getQuantity(), item.getUnitPrice()});
         });
         productTable.setModel(model);
-        
+
     }
-    
+
     public void setBillInfo(BillSold bill) {
         BillInfo = bill;
         listItems = bill.getItems();
@@ -74,10 +75,10 @@ public class BillSoldDetail extends javax.swing.JPanel {
         txtCustomerofName.setText(bill.getCustomer().getName());
         txtAddress.setText(bill.getCustomer().getName());
         txtPhoneNumber.setText(bill.getCustomer().getPhoneNumber());
-        
+
         initTable();
     }
-    
+
     private double calculateTotalPriceOfBill() {
         double totalPrice = 0;
         for (int i = 0; i < listItems.size(); i++) {
@@ -86,7 +87,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
         System.out.println(totalPrice);
         return totalPrice;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -316,12 +317,6 @@ public class BillSoldDetail extends javax.swing.JPanel {
 
         jLabel7.setText("Total amount: ");
 
-        txtTotalAmount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTotalAmountActionPerformed(evt);
-            }
-        });
-
         jLabel8.setText("VAT rate:");
 
         jLabel12.setText("VAT amount:");
@@ -421,11 +416,6 @@ public class BillSoldDetail extends javax.swing.JPanel {
                 createBillBtnMouseClicked(evt);
             }
         });
-        createBillBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createBillBtnActionPerformed(evt);
-            }
-        });
 
         btnBack.setBackground(new java.awt.Color(255, 0, 0));
         btnBack.setText("Back");
@@ -504,10 +494,10 @@ public class BillSoldDetail extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void productTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productTableMouseClicked
-        
+
         try {
             choosenRow = productTable.getSelectedRow();
-            
+
             if (choosenRow >= 0) {
                 chooseItem = listItems.get(choosenRow);
                 btnDelete.setEnabled(true);
@@ -549,13 +539,16 @@ public class BillSoldDetail extends javax.swing.JPanel {
             } else {
                 txtUnitPrice.setBackground(Color.white);
             }
-            
+            if (!errors.isEmpty()) {
+                JOptionPane.showMessageDialog(this, errors.toString());
+                return;
+            }
             BillItem billItem = new BillItem();
             billItem.setId(txtID.getText());
             billItem.setName(txtName.getText());
             billItem.setQuantity(Integer.parseInt(txtQuantity.getText()));
             billItem.setUnitPrice(Double.parseDouble(txtUnitPrice.getText()));
-            
+
             boolean isExisted = false;
             for (int i = 0; i < listItems.size(); i++) {
                 BillItem billItem1 = listItems.get(i);
@@ -563,7 +556,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
                     listItems.set(i, billItem);
                     isExisted = true;
                     break;
-                    
+
                 }
             }
             if (!isExisted) {
@@ -574,9 +567,9 @@ public class BillSoldDetail extends javax.swing.JPanel {
                 model.addRow(new Object[]{item.getId(), item.getName(),
                     item.getQuantity(), item.getUnitPrice(), item.getAmount()});
             });
-            
+
             model.fireTableDataChanged();
-            
+
             JOptionPane.showMessageDialog(this, "New product saved or updated");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
@@ -616,10 +609,6 @@ public class BillSoldDetail extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void txtTotalAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalAmountActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalAmountActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         try {
             ProductInterface productItem = new ProductInterface(homePage);
@@ -629,7 +618,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
                     txtID.setText(product.getId());
                     txtUnitPrice.setText("" + product.getSellPrice());
                 }
-                
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
@@ -637,40 +626,73 @@ public class BillSoldDetail extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
-        System.out.println("hello");
-        
         this.homePage.menuClicked(this.homePage.billInterface);
-
     }//GEN-LAST:event_btnBackMouseClicked
 
     private void createBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBillBtnMouseClicked
-        BillSold soldBill = new BillSold();
-        soldBill.setId((UUID.randomUUID().toString()));
-        soldBill.setName("abc");
-        soldBill.setCreatedAt(dateBillTextField.getDate());
-        soldBill.setType("sold");
-        soldBill.setItems(listItems);
-        soldBill.setName(this.nameBillTextField.getText());
-        soldBill.setCustomer(new Customer(txtCustomerofName.getText(), txtAddress.getText(), txtPhoneNumber.getText()));
-        
-        this.homePage.billInterface.listBills.add(soldBill);
-        this.homePage.billInterface.addNewBillToListPanel(soldBill);
-        this.homePage.menuClicked(this.homePage.billInterface);
-    }//GEN-LAST:event_createBillBtnMouseClicked
+        try {
+            StringBuilder errors = new StringBuilder();
 
-    private void createBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBillBtnActionPerformed
-//        System.out.println("hello");
-//        BillSold soldBill = new BillSold() ;
-//        soldBill.setId((UUID.randomUUID().toString()));
-//        soldBill.setName("abc");
-//        soldBill.setCreatedAt(LocalDate.now());
-//        soldBill.setType("sold");
-//        soldBill.setItems(listItems);
-//
-//        this.homePage.billInterface.listBills.add(soldBill);
-//        this.homePage.billInterface.addNewBillToListPanel(soldBill);
-//        this.homePage.menuClicked(this.homePage.billInterface);
-    }//GEN-LAST:event_createBillBtnActionPerformed
+            if (txtCustomerofName.getText().equals("")) {
+                errors.append("Customer of name must be entered\n");
+                txtCustomerofName.setBackground(Color.red);
+            } else {
+                txtCustomerofName.setBackground(Color.white);
+            }
+            if (txtAddress.getText().equals("")) {
+                errors.append("Address must be entered\n");
+                txtAddress.setBackground(Color.red);
+            } else {
+                txtAddress.setBackground(Color.white);
+            }
+            if (txtPhoneNumber.getText().equals("")) {
+                errors.append("Phone number must be entered\n");
+                txtPhoneNumber.setBackground(Color.red);
+            } else {
+                txtPhoneNumber.setBackground(Color.white);
+            }
+            if (nameBillTextField.getText().equals("")) {
+                errors.append("Bill of name must be entered\n");
+                nameBillTextField.setBackground(Color.red);
+            } else {
+                nameBillTextField.setBackground(Color.white);
+            }
+            if (dateBillTextField.getDateFormatString().equals("")) {
+                errors.append("Date must be entered\n");
+                dateBillTextField.setBackground(Color.red);
+            } else {
+                dateBillTextField.setBackground(Color.white);
+            }
+            BillItem item = listItems.get(0);
+                if (item.getId().equals("")) {
+                errors.append("Product must be entered\n");
+            }
+            
+            if (!errors.isEmpty()) {
+                JOptionPane.showMessageDialog(this, errors.toString());
+                return;
+            }
+            BillSold soldBill = new BillSold();
+            soldBill.setId((UUID.randomUUID().toString()));
+            soldBill.setName("abc");
+            soldBill.setCreatedAt(dateBillTextField.getDate());
+            soldBill.setType("sold");
+            soldBill.setItems(listItems);
+            soldBill.setName(this.nameBillTextField.getText());
+            soldBill.setCustomer(new Customer(txtCustomerofName.getText(), txtAddress.getText(), txtPhoneNumber.getText()));
+            JOptionPane.showMessageDialog(this, "New sold bil created");
+            this.homePage.billInterface.listBills.add(soldBill);
+            this.homePage.billInterface.addNewBillToListPanel(soldBill);
+            this.homePage.menuClicked(this.homePage.billInterface);
+            txtCustomerofName.setText("");
+            txtAddress.setText("");
+            txtPhoneNumber.setText("");
+            nameBillTextField.setText("");
+            dateBillTextField.setDate(null);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+    }//GEN-LAST:event_createBillBtnMouseClicked
 
     private void saveBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBillBtnMouseClicked
         BillSold editBillSold = new BillSold();
@@ -681,9 +703,9 @@ public class BillSoldDetail extends javax.swing.JPanel {
         editBillSold.setType("sold");
         editBillSold.setName(this.nameBillTextField.getText());
         int indexProduct = this.homePage.billInterface.listBills.indexOf(this.BillInfo);
-        
+
         this.homePage.billInterface.listBills.set(indexProduct, editBillSold);
-        
+
         this.homePage.billInterface.reRenderBilltListPanel(this.homePage.billInterface.listBills);
         this.homePage.menuClicked(homePage.billInterface);
     }//GEN-LAST:event_saveBillBtnMouseClicked

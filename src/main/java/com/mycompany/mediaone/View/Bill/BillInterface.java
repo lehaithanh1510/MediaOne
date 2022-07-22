@@ -67,7 +67,7 @@ public class BillInterface extends javax.swing.JPanel {
         BillInterfacePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BILLS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
         BillInterfacePanel.setPreferredSize(new java.awt.Dimension(689, 546));
 
-        filterBillBtn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Buy Bill", "Sold Bill", "All" }));
+        filterBillBtn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Buy Bill", "Sold Bill", " " }));
         filterBillBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         filterBillBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,11 +90,6 @@ public class BillInterface extends javax.swing.JPanel {
         addSoldBillBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addSoldBillBtnMouseClicked(evt);
-            }
-        });
-        addSoldBillBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSoldBillBtnActionPerformed(evt);
             }
         });
 
@@ -155,16 +150,15 @@ public class BillInterface extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void filterBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterBillBtnActionPerformed
-        // TODO add your handling code here:
         var billType = "Sold Bill".equals(filterBillBtn.getSelectedItem().toString()) ? "sold" : "buy";
-        if (!"All".equals(billType)) {
+        if ("All".equals(filterBillBtn.getSelectedItem().toString())) {
+             reRenderBilltListPanel(listBills);
+        } else {
             List<Bill> filteredBill = this.listBills.stream()
                     .filter(bill -> billType.equals(bill.getType()))
                     .collect(Collectors.toList());
 
-            reRenderBilltListPanel(filteredBill);
-        } else {
-            reRenderBilltListPanel(listBills);
+            reRenderBilltListPanel(filteredBill); 
         }
     }//GEN-LAST:event_filterBillBtnActionPerformed
 
@@ -175,10 +169,6 @@ public class BillInterface extends javax.swing.JPanel {
     private void addBuyBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBuyBillBtnMouseClicked
         this.homePage.menuClicked(this.homePage.addBillBuy);
     }//GEN-LAST:event_addBuyBillBtnMouseClicked
-
-    private void addSoldBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSoldBillBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addSoldBillBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

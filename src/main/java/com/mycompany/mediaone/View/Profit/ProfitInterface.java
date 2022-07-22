@@ -1,19 +1,13 @@
 package com.mycompany.mediaone.View.Profit;
 
 import com.mycompany.mediaone.Model.BillModel.Bill;
-import com.mycompany.mediaone.Model.BillModel.BillBuy;
 import com.mycompany.mediaone.Model.BillModel.BillItem;
-import com.mycompany.mediaone.Model.BillModel.BillSold;
 import com.mycompany.mediaone.Model.BillModel.Customer;
 import com.mycompany.mediaone.View.HomePage;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.ArrayList;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,109 +19,19 @@ public class ProfitInterface extends javax.swing.JPanel {
     private List<BillItem> listItems = new ArrayList<>();
     private DefaultTableModel model;
     private final HomePage homePage;
-    private String[] costcolumHeaders = new String[]{"Number", "ID", "Time", "Price"};
-    private String[] salecolumHeaders = new String[]{"Number", "ID", "Time", "Price"};
+    private String[] costcolumHeaders = new String[]{"Ordinal Number", "ID", "Name", "Time", "Price"};
+    private String[] salecolumHeaders = new String[]{"Ordinal Number", "ID", "Name", "Time", "Price"};
     private Object total;
 
     public ProfitInterface(HomePage homePage) {
         initComponents();
         this.homePage = homePage;
-        initData();
-        initTable();
-    }
-
-    public void loadTableBill() { //load dữ liệu đầu vào
-        List<Bill> loadTableBill = new ArrayList<>();
-    }
-
-    public void FomatCalendar() {
-
-    }
-
-    public void searchFor() {
-        search.setEnabled(false);
-        profit.setEnabled(false);
-    }
-
-    private void initData() {
-        listItems.add(new BillItem("02", "Slayer", 6, 200));
-        listItems.add(new BillItem("P01", "Utaka", 1, 400));
-        listItems.add(new BillItem("P02", "Santa", 3, 400));
-        customer = new Customer("Tran Xuan Loc", "0899999999", "Dai Co Viet, Hai Ba Trung, Ha Noi");
-
-        BillSold soldBill = new BillSold();
-        soldBill.setId((UUID.randomUUID().toString()));
-        soldBill.setName("abc");
-//        soldBill.setCreatedAt(Date.now());
-        soldBill.setType("sold");
-        soldBill.setItems(listItems);
-        soldBill.setCustomer(customer);
-
-        listSoldBill.add(soldBill);
-        listSoldBill.add(soldBill);
-
-        BillBuy buyBill = new BillBuy();
-        buyBill.setId((UUID.randomUUID().toString()));
-        buyBill.setName("abc");
-//        buyBill.setCreatedAt(LocalDate.now());
-        buyBill.setType("buy");
-        buyBill.setItems(listItems);
-        listBuyBill.add(buyBill);
-        listBuyBill.add(buyBill);
-        totalCostLabel.setText(Double.toString(this.calculateTotalCost(listBuyBill)));
-        totalSaleLabel.setText(Double.toString(this.calculateTotalSale(listSoldBill)));
-    }
-
-    private double calculateTotalCost(List<Bill> listBillCost) {
-        double sum = 0;
-
-        for (Bill billCost : listBillCost) {
-            System.out.println(billCost);
-            sum += billCost.getTotal();
-        }
-        return sum;
-    }
-
-    private double calculateTotalSale(List<Bill> listBillSold) {
-        double sums = 0;
-
-        for (Bill billSold : listBillSold) {
-            sums += billSold.getTotal();
-        }
-        return sums;
-    }
-
-    private double caculateTotalProfit() {
-        double sum = 0;
-        sum = calculateTotalSale(this.listSoldBill) - calculateTotalCost(this.listBuyBill);
-        return sum;
-
-    }
-
-    private void initTable() {
-        model = new DefaultTableModel();
-        model.setColumnIdentifiers(costcolumHeaders);
-
-        listBuyBill.forEach(item -> {
-            model.addRow(new Object[]{listBuyBill.indexOf(item), item.getId(),
-                item.getCreatedAt(), item.getTotal()});
-        });
-        CostsTable.setModel(model);
-        model = new DefaultTableModel();
-        model.setColumnIdentifiers(salecolumHeaders);
-        listSoldBill.forEach(item -> {
-            model.addRow(new Object[]{listSoldBill.indexOf(item), item.getId(),
-                item.getCreatedAt(), item.getTotal()});
-        });
-        SalesTable.setModel(model);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        search = new javax.swing.JButton();
-        profit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         timeForm = new javax.swing.JLabel();
         to = new javax.swing.JLabel();
@@ -137,9 +41,6 @@ public class ProfitInterface extends javax.swing.JPanel {
         CostsTable = new javax.swing.JTable();
         saleTable = new javax.swing.JScrollPane();
         SalesTable = new javax.swing.JTable();
-        mediaoneSearch = new javax.swing.JLabel();
-        searchText = new javax.swing.JScrollPane();
-        textSearch = new javax.swing.JTextArea();
         proFit = new javax.swing.JLabel();
         totalSale = new javax.swing.JLabel();
         profittext = new javax.swing.JScrollPane();
@@ -154,40 +55,11 @@ public class ProfitInterface extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         btnloadBill = new javax.swing.JButton();
 
-        search.setText("Search");
-        search.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchMouseClicked(evt);
-            }
-        });
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-
-        profit.setText("PROFIT");
-        profit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                profitActionPerformed(evt);
-            }
-        });
+        setBackground(new java.awt.Color(255, 255, 255));
 
         timeForm.setText("Time From");
 
         to.setText(" To");
-
-        timeFrom.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                timeFromMouseClicked(evt);
-            }
-        });
-
-        timeTo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                timeToMouseClicked(evt);
-            }
-        });
 
         CostsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -302,11 +174,6 @@ public class ProfitInterface extends javax.swing.JPanel {
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-        });
-        CostsTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CostsTableMouseClicked(evt);
             }
         });
         costsTable.setViewportView(CostsTable);
@@ -428,40 +295,10 @@ public class ProfitInterface extends javax.swing.JPanel {
         });
         saleTable.setViewportView(SalesTable);
 
-        mediaoneSearch.setText("MediaOne Search ");
-
-        searchText.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                searchTextFocusGained(evt);
-            }
-        });
-
-        textSearch.setColumns(20);
-        textSearch.setRows(5);
-        textSearch.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                textSearchFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textSearchFocusLost(evt);
-            }
-        });
-        textSearch.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                textSearchMouseClicked(evt);
-            }
-        });
-        searchText.setViewportView(textSearch);
-
         proFit.setText("Profit");
 
         totalSale.setText("Total Sale");
 
-        totalProfit.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                totalProfitFocusLost(evt);
-            }
-        });
         profittext.setViewportView(totalProfit);
 
         totalCost.setText("Total Cost");
@@ -486,11 +323,6 @@ public class ProfitInterface extends javax.swing.JPanel {
                 btnloadBillMouseClicked(evt);
             }
         });
-        btnloadBill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnloadBillActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -499,8 +331,6 @@ public class ProfitInterface extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(costsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -525,36 +355,31 @@ public class ProfitInterface extends javax.swing.JPanel {
                                 .addComponent(jLabel4)
                                 .addGap(440, 440, 440))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(costsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35)
-                                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(71, 71, 71)
-                                .addComponent(mediaoneSearch))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(timeForm)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(timeFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(271, 271, 271)
-                                .addComponent(saletables))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
-                                .addComponent(to)
+                                .addGap(6, 6, 6)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addComponent(coststable))
+                                        .addComponent(timeForm)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(timeFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
+                                        .addGap(226, 226, 226)
+                                        .addComponent(to)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(timeTo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnloadBill, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(saleTable, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(timeTo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(24, 24, 24)
+                                .addComponent(btnloadBill, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(saleTable, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(301, 301, 301)
+                .addComponent(coststable))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(296, 296, 296)
+                .addComponent(saletables))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,23 +392,16 @@ public class ProfitInterface extends javax.swing.JPanel {
                         .addComponent(to)
                         .addComponent(timeTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btnloadBill))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(profit, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(mediaoneSearch))
-                    .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addComponent(coststable)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(costsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(costsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saletables)
-                .addGap(12, 12, 12)
-                .addComponent(saleTable, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(saleTable, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(profittext, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -601,95 +419,90 @@ public class ProfitInterface extends javax.swing.JPanel {
                             .addComponent(totalSaleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(totalSale)))
                     .addComponent(unitvnd))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void profitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profitActionPerformed
-
-    }//GEN-LAST:event_profitActionPerformed
-
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-
-    }//GEN-LAST:event_searchActionPerformed
-
-    private void timeFromMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeFromMouseClicked
-
-    }//GEN-LAST:event_timeFromMouseClicked
-
-    private void timeToMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_timeToMouseClicked
-
-    }//GEN-LAST:event_timeToMouseClicked
-
-    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-
-    }//GEN-LAST:event_searchMouseClicked
-
-    private void textSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textSearchMouseClicked
-
-    }//GEN-LAST:event_textSearchMouseClicked
-
-    private void searchTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFocusGained
-
-    }//GEN-LAST:event_searchTextFocusGained
-
-    private void textSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textSearchFocusLost
-
-    }//GEN-LAST:event_textSearchFocusLost
-
-    private void btnloadBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloadBillActionPerformed
-//        // kiểm tra đầu vào của Bill trước khi truyền dữ liệu đến bảng
-//        SimpleDateFormat TTime = new SimpleDateFormat("dd-MM-yyyy");
-//        String datefrom = TTime.format(timeFrom.getDate());
-//        String dateto = TTime.format(timeTo.getDate());
-//        List<Bill> listBuyBill = new ArrayList<>();
-//        List<Bill> listSoldBill = new ArrayList<>();
-//        // Khởi tạo List truyền vào List<Bill> CreatAt của Bill: datecheck;
-//        LocalTime datecheck = LocalTime.of(20, 1, 2022); //initDate
-//        if ((datecheck.isAfter(datefrom) || datecheck.isEquals(timeto))
-//                && (datecheck.isBefore(timeto) || datecheck.isEquals(timeto))) {
-//            //loadTable dã có điều kiện dàng buộc vô bảng CostTable;
-//            model = new DefaultTableModel();
-//            model.setColumnIdentifiers(costcolumHeaders);
-//
-//            listBuyBill.forEach(item -> {
-//                model.addRow(new Object[]{listBuyBill.indexOf(item), item.getId(),
-//                    item.getCreatedAt(), item.getTotal()});
-//            });
-//            CostsTable.setModel(model);
-//
-//            //loadTable dã có điều kiện dàng buộc vô bảng SaleTable;
-//            model = new DefaultTableModel();
-//            model.setColumnIdentifiers(salecolumHeaders);
-//            listSoldBill.forEach(item -> {
-//                model.addRow(new Object[]{listSoldBill.indexOf(item), item.getId(),
-//                    item.getCreatedAt(), item.getTotal()});
-//            });
-//            SalesTable.setModel(model);
-//        }
-//        if (datecheck.isBefore(timefrom) || datecheck.isAfter(timeto)) {
-//            JOptionPane.showMessageDialog(null, "Không có dữ liệu ! Vui lòng nhập lại ngày giờ");
-//        }
-
-    }//GEN-LAST:event_btnloadBillActionPerformed
-
     private void btnloadBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloadBillMouseClicked
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd");
+            SimpleDateFormat formatter1 = new SimpleDateFormat("MM");
+            SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy");
+            int dateFrom = Integer.parseInt(formatter.format(timeFrom.getDate()));
+            int dateFrom1 = Integer.parseInt(formatter1.format(timeFrom.getDate()));
+            int dateFrom2 = Integer.parseInt(formatter2.format(timeFrom.getDate()));
+
+            int dateTo = Integer.parseInt(formatter.format(timeTo.getDate()));
+            int dateTo1 = Integer.parseInt(formatter1.format(timeTo.getDate()));
+            int dateTo2 = Integer.parseInt(formatter2.format(timeTo.getDate()));
+
+            listBuyBill = this.homePage.billInterface.listBills.stream()
+                    .filter(bill -> "buy".equals(bill.getType()))
+                    .collect(Collectors.toList());
+
+            listSoldBill = this.homePage.billInterface.listBills.stream()
+                    .filter(bill -> "sold".equals(bill.getType()))
+                    .collect(Collectors.toList());
+
+            if ((dateFrom2 <= dateTo2) && (dateFrom1 <= dateTo1)
+                    && (dateFrom <= dateTo)) {
+                int sumCost = 0;
+                int sumSale = 0;
+                model = new DefaultTableModel();
+
+                model.setColumnIdentifiers(costcolumHeaders);
+
+                for (int i = 0; i < listBuyBill.size(); i++) {
+                    Bill bill = listBuyBill.get(i);
+                    int dateBuyBill = Integer.parseInt(formatter.format(bill.getCreatedAt()));
+                    int dateBuyBill1 = Integer.parseInt(formatter1.format(bill.getCreatedAt()));
+                    int dateBuyBill2 = Integer.parseInt(formatter2.format(bill.getCreatedAt()));
+
+                    if ((dateBuyBill2 >= dateFrom2) && (dateBuyBill2 <= dateTo2)
+                            && (dateBuyBill1 >= dateFrom1) && (dateBuyBill1 <= dateTo1)
+                            && (dateBuyBill >= dateFrom) && (dateBuyBill <= dateTo)) {
+
+                        model.addRow(new Object[]{model.getRowCount(), bill.getId(), bill.getName(),
+                            bill.getCreatedAt(), bill.getTotal()});
+
+                        sumCost += bill.getTotal();
+                    }
+                }
+                CostsTable.setModel(model);
+
+                model = new DefaultTableModel();
+
+                model.setColumnIdentifiers(salecolumHeaders);
+
+                for (int i = 0; i < listSoldBill.size(); i++) {
+                    Bill bill = listSoldBill.get(i);
+                    int dateSoldBill = Integer.parseInt(formatter.format(bill.getCreatedAt()));
+                    int dateSoldBill1 = Integer.parseInt(formatter1.format(bill.getCreatedAt()));
+                    int dateSoldBill2 = Integer.parseInt(formatter2.format(bill.getCreatedAt()));
+
+                    if ((dateSoldBill2 >= dateFrom2) && (dateSoldBill2 <= dateTo2)
+                            && (dateSoldBill1 >= dateFrom1) && (dateSoldBill1 <= dateTo1)
+                            && (dateSoldBill >= dateFrom) && (dateSoldBill <= dateTo)) {
+
+                        model.addRow(new Object[]{model.getRowCount(), bill.getId(), bill.getName(),
+                            bill.getCreatedAt(), bill.getTotal()});
+
+                        sumSale += bill.getTotal();
+                    }
+                }
+                SalesTable.setModel(model);
+
+                totalCostLabel.setText(Double.toString(sumCost));
+                totalSaleLabel.setText(Double.toString(sumSale));
+                totalProfit.setText(Double.toString(sumCost + sumSale));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+
 
     }//GEN-LAST:event_btnloadBillMouseClicked
-
-    private void totalProfitFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_totalProfitFocusLost
-
-        totalProfit.setText(Double.parseDouble(totalSaleLabel.getText()) - Double.parseDouble(totalCostLabel.getText()) + "");
-
-    }//GEN-LAST:event_totalProfitFocusLost
-
-    private void textSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textSearchFocusGained
-
-    }//GEN-LAST:event_textSearchFocusGained
-
-    private void CostsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CostsTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CostsTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -701,15 +514,10 @@ public class ProfitInterface extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel mediaoneSearch;
     private javax.swing.JLabel proFit;
-    private javax.swing.JButton profit;
     private javax.swing.JScrollPane profittext;
     private javax.swing.JScrollPane saleTable;
     private javax.swing.JLabel saletables;
-    private javax.swing.JButton search;
-    private javax.swing.JScrollPane searchText;
-    private javax.swing.JTextArea textSearch;
     private javax.swing.JLabel timeForm;
     private com.toedter.calendar.JDateChooser timeFrom;
     private com.toedter.calendar.JDateChooser timeTo;
