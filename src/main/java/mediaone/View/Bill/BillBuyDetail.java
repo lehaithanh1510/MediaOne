@@ -556,18 +556,22 @@ public class BillBuyDetail extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_saveProductBtnMouseClicked
 
-    private void refreshBillDetail() {
-        idInputField.setText("");
+    private void refreshInterface() {
+        nameBillTextField.setText("");
+        dateBillTextField.setCalendar(null);
+        idInputField.setText(UUID.randomUUID().toString());
         nameInputField.setText("");
         quantityInputField.setText("");
         unitPriceInputField.setText("");
         nameInputField.setBackground(Color.white);
         quantityInputField.setBackground(Color.white);
         unitPriceInputField.setBackground(Color.white);
+        modelProductTable.setRowCount(0);
+        listItem = new ArrayList<>();
     }
     private void createBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBillBtnMouseClicked
         BillBuy newBuyBill = new BillBuy();
-        newBuyBill.setId(UUID.randomUUID().toString());
+        newBuyBill.setId(idInputField.getText());
         newBuyBill.setItems(listItem);
 //        newBuyBill.setTotal(calculateTotalPriceOfBill());
         newBuyBill.setCreatedAt(dateBillTextField.getDate());
@@ -575,9 +579,9 @@ public class BillBuyDetail extends javax.swing.JPanel {
         newBuyBill.setName(this.nameBillTextField.getText());
         this.homePage.billInterface.listBills.add(newBuyBill);
         this.homePage.billInterface.addNewBillToListPanel(newBuyBill);
-        JOptionPane.showMessageDialog(this, "New sold bil created");
+        JOptionPane.showMessageDialog(this, "New buy bil created");
         this.homePage.menuClicked(this.homePage.billInterface);
-        this.refreshBillDetail();
+        this.refreshInterface();
 
         try {
             this.billFileUtil.writeListToFile("bill", this.homePage.billInterface.listBills);

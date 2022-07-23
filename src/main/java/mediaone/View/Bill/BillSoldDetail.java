@@ -607,6 +607,20 @@ public class BillSoldDetail extends javax.swing.JPanel {
         this.homePage.menuClicked(this.homePage.billInterface);
     }//GEN-LAST:event_btnBackMouseClicked
 
+    private void refreshInterface() {
+        txtID.setText("");
+        txtPhoneNumber.setText("");
+        txtCustomerofName.setText("");
+        txtAddress.setText("");
+        nameBillTextField.setText("");
+        dateBillTextField.setCalendar(null);
+        txtName.setText("");
+        txtUnitPrice.setText("");
+        txtQuantity.setText("");
+        model.setRowCount(0);
+        listItems = new ArrayList<>();
+    }
+
     private void createBillBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_createBillBtnMouseClicked
         try {
             StringBuilder errors = new StringBuilder();
@@ -657,7 +671,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
             soldBill.setItems(listItems);
             soldBill.setName(this.nameBillTextField.getText());
             soldBill.setCustomer(new Customer(txtCustomerofName.getText(), txtAddress.getText(), txtPhoneNumber.getText()));
-            JOptionPane.showMessageDialog(this, "New buy bil created");
+            JOptionPane.showMessageDialog(this, "New sold bill created");
             this.homePage.billInterface.listBills.add(soldBill);
             this.homePage.billInterface.addNewBillToListPanel(soldBill);
             this.homePage.menuClicked(this.homePage.billInterface);
@@ -666,6 +680,7 @@ public class BillSoldDetail extends javax.swing.JPanel {
             txtPhoneNumber.setText("");
             nameBillTextField.setText("");
             dateBillTextField.setDate(null);
+            this.refreshInterface();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
